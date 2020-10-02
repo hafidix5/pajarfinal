@@ -54,18 +54,6 @@
         </a>
       </li>
     </li>
-    <li class="nav-item {{ $activePage ?? '' }}">
-      <div class="collapse show" id="laravelExample">
-        <ul class="nav">
-          <li class="nav-item{{ $activePage ?? '' }}">
-            <a class="nav-link" href="{{ route('profile.edit') }}">
-              <i class="material-icons">perm_identity</i>
-              <p>{{ __('Profil') }}</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </li>
 
       <li class="nav-item{{ $activePage ?? '' }}">
           <a class="nav-link" href="{{ route('jenisEdukasi') }}">
@@ -81,15 +69,21 @@
             </a>
           </li>
           <li class="nav-item{{ $activePage ?? '' }}">
-            <a class="nav-link" href="{{ route('riwayat') }}">
+            <a class="nav-link" href="{{ route('detekos') }}">
               <i class="material-icons">assignment_turned_in</i>
                 <p>{{ __('DETEKS') }}</p>
             </a>
           </li>
           <li class="nav-item{{ $activePage ?? '' }}">
-            <a class="nav-link" href="{{ route('riwayat') }}">
+            <a class="nav-link" href="{{ route('ramodif') }}">
               <i class="material-icons">grading</i>
                 <p>{{ __('RAMODIF') }}</p>
+            </a>
+          </li>
+          <li class="nav-item{{ $activePage ?? '' }}">
+            <a class="nav-link" href="{{ route('puskesmas') }}">
+              <i class="material-icons">grading</i>
+                <p>{{ __('Puskesmas') }}</p>
             </a>
           </li>
 

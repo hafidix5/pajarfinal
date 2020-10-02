@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('jenisEdukasi', 'jenisEdukasiController@index')->name('jenisEdukasi');
 Route::get('isi_kuesioner', 'KuesionerController@index')->name('typography');
 Route::put('pasien', ['as' => 'pasien.update', 'uses' => 'PasienController@update']);
 Route::post('isi_kuesionerSave', 'jawaban_kuesionerController@store')->name('isi_kuesionerSave');

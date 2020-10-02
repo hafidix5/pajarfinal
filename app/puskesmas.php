@@ -11,7 +11,7 @@ class puskesmas extends Model
     protected $fillable = [
         'nama','alamat',
     ];
-    public function puskesmas(){
+    public function admin(){
         return $this->hasMany('App\admin');
     }
     public function pasien(){

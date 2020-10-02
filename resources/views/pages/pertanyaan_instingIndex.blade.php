@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'Daftar Insting', 'titlePage' => __('Daftar Insting')])
+@extends('layouts.app', ['activePage' => 'Daftar Pertanyaan Insting', 'titlePage' => __('Daftar Pertanyaan Insting')])
 
 @section('content')
   <div class="content">
@@ -23,32 +23,25 @@
                   <table class="table table-hover">
                     <thead class="">
                       <th>
-                        Nama
+                        Pertanyaan
                       </th>
-                      <th>
-                        Video
-                      </th>
-                      <th>
-                        Jenis Edukasi
-                      </th>
+
                     <th>
                         Aksi
                     </th>
                     </thead>
                     <tbody>
-                        @foreach ($insting as $insting)
+                        @foreach ($pertanyaan_insting as $pertanyaan_insting)
                         <tr>
-                            <td>{{ $insting->nama }}</td>
-                            <td>{{ $insting->video }}</td>
-                            <td>{{ $insting->jenis_edukasi }}</td>
+                            <td>{{ $pertanyaan_insting->pertanyaan }}</td>
                             <th>
-                                <a class="nav-link" href="{{ route('pertanyaan_insting',$insting->id) }}">
+                                <a class="nav-link" href="{{ route('pertanyaan_insting',$pertanyaan_insting->id) }}">
                                     <i class="material-icons">help_outline</i> Lihat
                                   </a>
-                               <a class="nav-link" href="{{ route('insting.edit',$insting->id) }}">
+                               <a class="nav-link" href="{{ route('pertanyaan_insting.edit',$pertanyaan_insting->id) }}">
                                     <i class="material-icons">edit</i> Edit
                                   </a>
-                                   <a class="nav-link" href="{{ route('insting.hapus',$insting->id) }}">
+                                   <a class="nav-link" href="{{ route('pertanyaan_insting.hapus',$pertanyaan_insting->id) }}">
                                     <i class="material-icons">remove_circle</i> Hapus
                                   </a>
 
@@ -66,7 +59,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <a href="{{ url('insting.insert') }}" class="btn btn-xs btn-info pull-left ml-auto">Tambah</a>
+                    <a href="{{ url('pertanyaan_insting.insert') }}" class="btn btn-xs btn-info pull-left ml-auto">Tambah</a>
                 </div>
             </div>
 

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\puskesmas;
+use App\pertanyaan_insting;
 
-class PuskesmasController extends Controller
+class pertanyaan_instingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,7 @@ class PuskesmasController extends Controller
      */
     public function index()
     {
-        $puskesmas=puskesmas::all();
-        return view('pages.puskesmasIndex',['puskesmas'=>$puskesmas]);
+        //
     }
 
     /**
@@ -29,11 +28,6 @@ class PuskesmasController extends Controller
         //
     }
 
-    public function insert()
-    {
-        return view('pages.puskesmasInsert');
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -42,17 +36,7 @@ class PuskesmasController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-    		'nama' => 'required',
-            'alamat' => 'required'
-    	]);
-
-        puskesmas::create([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat
-    	]);
-
-            return redirect('puskesmas')->withStatus(__('Data berhasil disimpan'));
+        //
     }
 
     /**
@@ -63,7 +47,17 @@ class PuskesmasController extends Controller
      */
     public function show($id)
     {
-        //
+        /* $pertanyaan_insting=pertanyaan_insting::all();
+        //dd($pertanyaan_insting);
+        return view('pages.pertanyaan_instingIndex',['pertanyaan_insting'=>$pertanyaan_insting]); */
+
+        $pertanyaan_insting=pertanyaan_insting::where('pertanyaan_insting.insting_id', $id)
+        ->Join('insting','pertanyaan_insting.insting_id','=','insting.id')
+        ->select('pertanyaan_insting.pertanyaan as pertanyaan','insting.nama as nama',
+        'pertanyaan_insting.id as id')->get();
+        return view('pages.pertanyaan_instingIndex',['pertanyaan_insting'=>$pertanyaan_insting]);
+      //  dd($pertanyaan_insting);
+
     }
 
     /**
@@ -74,9 +68,7 @@ class PuskesmasController extends Controller
      */
     public function edit($id)
     {
-        $puskesmas = puskesmas::find($id);
-       // dd($puskesmas);
-        return view('pages.puskesmasEdit',['puskesmas'=>$puskesmas]);
+        //
     }
 
     /**
@@ -88,16 +80,7 @@ class PuskesmasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-    		'nama' => 'required',
-            'alamat' => 'required'
-    	]);
-
-         $puskesmas = puskesmas::find($id);
-         $puskesmas->nama = $request->nama;
-         $puskesmas->alamat = $request->alamat;
-         $puskesmas->save();
-         return redirect('puskesmas')->withStatus(__('Data berhasil diubah'));
+        //
     }
 
     /**
@@ -108,8 +91,6 @@ class PuskesmasController extends Controller
      */
     public function destroy($id)
     {
-        $puskesmas=puskesmas::find($id);
-        $puskesmas->delete();
-        return redirect('puskesmas')->withStatus(__('Data berhasil dihapus'));
+        //
     }
 }

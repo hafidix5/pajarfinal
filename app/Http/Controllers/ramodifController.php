@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\detekos;
+use App\ramodif;
 use App\jenisEdukasi;
 
-class detekosController extends Controller
+
+class ramodifController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +17,15 @@ class detekosController extends Controller
      */
     public function index()
     {
-        $detekos=DB::table('jenis_edukasi')
-        ->rightJoin('detekos','detekos.jenis_edukasi_id','=','jenis_edukasi.id')
-        ->select('jenis_edukasi.nama as jenis_edukasi','detekos.nama as nama',
-        'detekos.video as video','detekos.id as id')->get();
-       // dd($detekos);
+        $ramodif=DB::table('jenis_edukasi')
+        ->rightJoin('ramodif','ramodif.jenis_edukasi_id','=','jenis_edukasi.id')
+        ->select('jenis_edukasi.nama as jenis_edukasi','ramodif.nama as nama',
+        'ramodif.video as video','ramodif.id as id')->get();
+       // dd($ramodif);
       /*  $user_with_organization = User::where('id', $user_id)
     ->leftJoin('organizations', 'users.organization_id', '=', 'organizations.id')
     ->select('users.id','organizations.name')->first(); */
-        return view('pages.detekosIndex',['detekos'=>$detekos]);
+        return view('pages.ramodifIndex',['ramodif'=>$ramodif]);
     }
 
     /**
@@ -36,15 +37,10 @@ class detekosController extends Controller
     {
         //
     }
-
     public function insert()
     {
-        /* $jenisEdukasi=DB::table('jenis_edukasi')
-        ->rightJoin('detekos','detekos.jenis_edukasi_id','=','jenis_edukasi.id')
-        ->select('jenis_edukasi.nama as nama','jenis_edukasi.id as id')->get();
-        return view('pages.detekosInsert',['jenisEdukasi'=>$jenisEdukasi]); */
         $jenisEdukasi=jenisEdukasi::all();
-        return view('pages.detekosInsert',['jenisEdukasi'=>$jenisEdukasi]);
+        return view('pages.ramodifInsert',['jenisEdukasi'=>$jenisEdukasi]);
     }
 
     /**
@@ -55,20 +51,19 @@ class detekosController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request,[
     		'nama' => 'required',
             'video' => 'required',
             'jenisEdukasi_id' => 'required'
     	]);
 
-        detekos::create([
+        ramodif::create([
             'nama' => $request->nama,
             'video' => $request->video,
     		'jenis_edukasi_id' => $request->jenisEdukasi_id
     	]);
 
-            return redirect('detekos')->withStatus(__('Data berhasil disimpan'));
+            return redirect('ramodif')->withStatus(__('Data berhasil disimpan'));
     }
 
     /**
@@ -91,11 +86,11 @@ class detekosController extends Controller
     public function edit($id)
     {
         $jenisEdukasi=jenisEdukasi::all();
-        $detekos=detekos::where('detekos.id', $id)
-        ->Join('jenis_edukasi','detekos.jenis_edukasi_id','=','jenis_edukasi.id')
-        ->select('jenis_edukasi.nama as jenis_edukasi','detekos.nama as nama',
-        'detekos.video as video','detekos.id as id','detekos.jenis_edukasi_id as idjenis')->first();
-        return view('pages.detekosEdit',['detekos'=>$detekos,'jenisEdukasi'=>$jenisEdukasi]);
+        $ramodif=ramodif::where('ramodif.id', $id)
+        ->Join('jenis_edukasi','ramodif.jenis_edukasi_id','=','jenis_edukasi.id')
+        ->select('jenis_edukasi.nama as jenis_edukasi','ramodif.nama as nama',
+        'ramodif.video as video','ramodif.id as id','ramodif.jenis_edukasi_id as idjenis')->first();
+        return view('pages.ramodifEdit',['ramodif'=>$ramodif,'jenisEdukasi'=>$jenisEdukasi]);
     }
 
     /**
@@ -113,12 +108,12 @@ class detekosController extends Controller
             'jenisEdukasi_id' => 'required'
     	]);
 
-         $detekos = detekos::find($id);
-         $detekos->nama = $request->nama;
-         $detekos->video = $request->video;
-         $detekos->jenis_edukasi_id = $request->jenisEdukasi_id;
-         $detekos->save();
-         return redirect('detekos')->withStatus(__('Data berhasil diubah'));
+         $ramodif = ramodif::find($id);
+         $ramodif->nama = $request->nama;
+         $ramodif->video = $request->video;
+         $ramodif->jenis_edukasi_id = $request->jenisEdukasi_id;
+         $ramodif->save();
+         return redirect('ramodif')->withStatus(__('Data berhasil diubah'));
     }
 
     /**
@@ -129,8 +124,8 @@ class detekosController extends Controller
      */
     public function destroy($id)
     {
-        $detekos=detekos::find($id);
-        $detekos->delete();
-        return redirect('detekos')->withStatus(__('Data berhasil dihapus'));
+        $ramodif=ramodif::find($id);
+        $ramodif->delete();
+        return redirect('ramodif')->withStatus(__('Data berhasil dihapus'));
     }
 }

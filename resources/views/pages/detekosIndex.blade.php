@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'Daftar Insting', 'titlePage' => __('Daftar Insting')])
+@extends('layouts.app', ['activePage' => 'Daftar Detekos', 'titlePage' => __('Daftar Detekos')])
 
 @section('content')
   <div class="content">
@@ -36,22 +36,18 @@
                     </th>
                     </thead>
                     <tbody>
-                        @foreach ($insting as $insting)
+                        @foreach ($detekos as $detekos)
                         <tr>
-                            <td>{{ $insting->nama }}</td>
-                            <td>{{ $insting->video }}</td>
-                            <td>{{ $insting->jenis_edukasi }}</td>
+                            <td>{{ $detekos->nama }}</td>
+                            <td>{{ $detekos->video }}</td>
+                            <td>{{ $detekos->jenis_edukasi }}</td>
                             <th>
-                                <a class="nav-link" href="{{ route('pertanyaan_insting',$insting->id) }}">
-                                    <i class="material-icons">help_outline</i> Lihat
-                                  </a>
-                               <a class="nav-link" href="{{ route('insting.edit',$insting->id) }}">
+                               <a class="nav-link" href="{{ route('detekos.edit',$detekos->id) }}">
                                     <i class="material-icons">edit</i> Edit
                                   </a>
-                                   <a class="nav-link" href="{{ route('insting.hapus',$insting->id) }}">
+                                   <a class="nav-link" href="{{ route('detekos.hapus',$detekos->id) }}">
                                     <i class="material-icons">remove_circle</i> Hapus
                                   </a>
-
                             </th>
                         </tr>
                     @endforeach
@@ -66,7 +62,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <a href="{{ url('insting.insert') }}" class="btn btn-xs btn-info pull-left ml-auto">Tambah</a>
+                    <a href="{{ url('detekos.insert') }}" class="btn btn-xs btn-info pull-left ml-auto">Tambah</a>
                 </div>
             </div>
 

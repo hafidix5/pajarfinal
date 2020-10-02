@@ -55,6 +55,34 @@ Route::get('riwayatdetail/{tanggal}/DetailKuesioner/{id}', 'jawaban_kuesionerCon
     Route::put('insting.update/{id}', ['as' => 'insting.update', 'uses' => 'instingController@update']);
     Route::get('insting.hapus/{id}', ['as' => 'insting.hapus', 'uses' => 'instingController@destroy']);
 
+    Route::get('detekos', 'detekosController@index')->name('detekos');
+    Route::get('detekos.insert', 'detekosController@insert')->name('detekos.insert');
+    Route::post('detekos.store', ['as' => 'detekos.store', 'uses' => 'detekosController@store']);
+    Route::get('detekos.edit/{id}', ['as' => 'detekos.edit', 'uses' => 'detekosController@edit']);
+    Route::put('detekos.update/{id}', ['as' => 'detekos.update', 'uses' => 'detekosController@update']);
+    Route::get('detekos.hapus/{id}', ['as' => 'detekos.hapus', 'uses' => 'detekosController@destroy']);
+
+    Route::get('ramodif', 'ramodifController@index')->name('ramodif');
+    Route::get('ramodif.insert', 'ramodifController@insert')->name('ramodif.insert');
+    Route::post('ramodif.store', ['as' => 'ramodif.store', 'uses' => 'ramodifController@store']);
+    Route::get('ramodif.edit/{id}', ['as' => 'ramodif.edit', 'uses' => 'ramodifController@edit']);
+    Route::put('ramodif.update/{id}', ['as' => 'ramodif.update', 'uses' => 'ramodifController@update']);
+    Route::get('ramodif.hapus/{id}', ['as' => 'ramodif.hapus', 'uses' => 'ramodifController@destroy']);
+
+    Route::get('puskesmas', 'puskesmasController@index')->name('puskesmas');
+    Route::get('puskesmas.insert', 'puskesmasController@insert')->name('puskesmas.insert');
+    Route::post('puskesmas.store', ['as' => 'puskesmas.store', 'uses' => 'puskesmasController@store']);
+    Route::get('puskesmas.edit/{id}', ['as' => 'puskesmas.edit', 'uses' => 'puskesmasController@edit']);
+    Route::put('puskesmas.update/{id}', ['as' => 'puskesmas.update', 'uses' => 'puskesmasController@update']);
+    Route::get('puskesmas.hapus/{id}', ['as' => 'puskesmas.hapus', 'uses' => 'puskesmasController@destroy']);
+
+    Route::get('pertanyaan_insting/{id}', 'pertanyaan_instingController@show')->name('pertanyaan_insting');
+    Route::get('pertanyaan_insting.insert', 'pertanyaan_instingController@insert')->name('pertanyaan_insting.insert');
+    Route::post('pertanyaan_insting.store', ['as' => 'pertanyaan_insting.store', 'uses' => 'pertanyaan_instingController@store']);
+    Route::get('pertanyaan_insting.edit/{id}', ['as' => 'pertanyaan_insting.edit', 'uses' => 'pertanyaan_instingController@edit']);
+    Route::put('pertanyaan_insting.update/{id}', ['as' => 'pertanyaan_insting.update', 'uses' => 'pertanyaan_instingController@update']);
+    Route::get('pertanyaan_insting.hapus/{id}', ['as' => 'pertanyaan_insting.hapus', 'uses' => 'instingController@destroy']);
+
 
     Route::get('icons', function () {
 		return view('pages.icons');

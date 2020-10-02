@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'Daftar Insting', 'titlePage' => __('Daftar Insting')])
+@extends('layouts.app', ['activePage' => 'Daftar Puskesmas', 'titlePage' => __('Daftar Puskesmas')])
 
 @section('content')
   <div class="content">
@@ -26,32 +26,25 @@
                         Nama
                       </th>
                       <th>
-                        Video
+                        Alamat
                       </th>
-                      <th>
-                        Jenis Edukasi
-                      </th>
+
                     <th>
                         Aksi
                     </th>
                     </thead>
                     <tbody>
-                        @foreach ($insting as $insting)
+                        @foreach ($puskesmas as $puskesmas)
                         <tr>
-                            <td>{{ $insting->nama }}</td>
-                            <td>{{ $insting->video }}</td>
-                            <td>{{ $insting->jenis_edukasi }}</td>
+                            <td>{{ $puskesmas->nama }}</td>
+                            <td>{{ $puskesmas->alamat }}</td>
                             <th>
-                                <a class="nav-link" href="{{ route('pertanyaan_insting',$insting->id) }}">
-                                    <i class="material-icons">help_outline</i> Lihat
-                                  </a>
-                               <a class="nav-link" href="{{ route('insting.edit',$insting->id) }}">
+                               <a class="nav-link" href="{{ route('puskesmas.edit',$puskesmas->id) }}">
                                     <i class="material-icons">edit</i> Edit
                                   </a>
-                                   <a class="nav-link" href="{{ route('insting.hapus',$insting->id) }}">
+                                   <a class="nav-link" href="{{ route('puskesmas.hapus',$puskesmas->id) }}">
                                     <i class="material-icons">remove_circle</i> Hapus
                                   </a>
-
                             </th>
                         </tr>
                     @endforeach
@@ -66,7 +59,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <a href="{{ url('insting.insert') }}" class="btn btn-xs btn-info pull-left ml-auto">Tambah</a>
+                    <a href="{{ url('puskesmas.insert') }}" class="btn btn-xs btn-info pull-left ml-auto">Tambah</a>
                 </div>
             </div>
 
