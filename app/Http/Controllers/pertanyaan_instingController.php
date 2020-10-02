@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\pertanyaan_insting;
+use App\insting;
 
 class pertanyaan_instingController extends Controller
 {
@@ -16,6 +17,12 @@ class pertanyaan_instingController extends Controller
     public function index()
     {
         //
+    }
+
+    public function insert($id)
+    {
+        $insting_id=$id;
+        return view('pages.pertanyaan_instingInsert',['insting_id'=>$insting_id]);
     }
 
     /**
@@ -36,7 +43,19 @@ class pertanyaan_instingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+    		'pertanyaan' => 'required',
+            'insting_id' => 'required'
+    	]);
+
+        pertanyaan_insting::create([
+            'pertanyaan' => $request->pertanyaan,
+            'insting_id' => $request->insting_id
+        ]);
+        $insting=insting::where('id','=',$request->insting_id)->select('insting.nama as nama','insting.id as id')->first();
+       // dd($request->insting_id);
+            return redirect()->route('pertanyaan_insting', ['id' => $request->insting_id,'insting'=>$insting])
+            ->withStatus(__('Data berhasil disimpan'));
     }
 
     /**
@@ -55,8 +74,10 @@ class pertanyaan_instingController extends Controller
         ->Join('insting','pertanyaan_insting.insting_id','=','insting.id')
         ->select('pertanyaan_insting.pertanyaan as pertanyaan','insting.nama as nama',
         'pertanyaan_insting.id as id')->get();
-        return view('pages.pertanyaan_instingIndex',['pertanyaan_insting'=>$pertanyaan_insting]);
-      //  dd($pertanyaan_insting);
+        $insting=insting::where('id','=',$id)->select('insting.nama as nama','insting.id as id')->first();
+        return view('pages.pertanyaan_instingIndex',['pertanyaan_insting'=>$pertanyaan_insting,
+        'insting'=>$insting]);
+       //dd($insting->nama);
 
     }
 
@@ -68,7 +89,9 @@ class pertanyaan_instingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pertanyaan_insting=pertanyaan_insting::where('pertanyaan_insting.id', $id)
+        ->select('pertanyaan_insting.pertanyaan as pertanyaan','pertanyaan_insting.id as id')->first();
+        return view('pages.pertanyaan_instingEdit',['pertanyaan_insting'=>$pertanyaan_insting]);
     }
 
     /**
@@ -80,7 +103,18 @@ class pertanyaan_instingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+    		'pertanyaan' => 'required',
+            'insting_id' => 'required'
+    	]);
+
+         $pertanyaan_insting = pertanyaan_insting::find($id);
+         $pertanyaan_insting->pertanyaan = $request->pertanyaan;
+         $pertanyaan_insting->insting_id = $request->insting_id;
+         $pertanyaan_insting->save();
+         $insting=insting::where('id','=',$request->insting_id)->select('insting.nama as nama','insting.id as id')->first();
+         return redirect()->route('pertanyaan_insting', ['id' => $request->insting_id,'insting'=>$insting])
+            ->withStatus(__('Data berhasil diubah'));
     }
 
     /**
@@ -91,6 +125,10 @@ class pertanyaan_instingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pertanyaan_insting=pertanyaan_insting::find($id);
+        $pertanyaan_insting->delete();
+        $insting=insting::where('id','=',$pertanyaan_insting->insting_id)->select('insting.nama as nama','insting.id as id')->first();
+         return redirect()->route('pertanyaan_insting', ['id' => $pertanyaan_insting->insting_id,'insting'=>$insting])
+            ->withStatus(__('Data berhasil dihapus'));
     }
 }

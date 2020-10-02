@@ -24,8 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pasien=pasien::all()->count();
-        $puskesmas=puskesmas::all()->count();
+        $jpasien=pasien::all()->count();
+        $jpuskesmas=puskesmas::all()->count();
 
        // dd($totalpasien);
        $role=auth()->user()->role;
@@ -35,7 +35,7 @@ class HomeController extends Controller
        }
        else
        {
-        return view('dashboard',compact('pasien','puskesmas'));
+        return view('dashboard',compact('jpasien','jpuskesmas'));
        }
 
     }

@@ -1,7 +1,9 @@
-@extends('layouts.app', ['activePage' => 'Daftar Ramodif', 'titlePage' => __('Daftar Ramodif')])
+@extends('layouts.app', ['activePage' => 'Daftar Pertanyaan Deteks' , 'titlePage' => __('Daftar Pertanyaan Deteks ')])
+
 
 @section('content')
   <div class="content">
+    <h3 style="color:blue;">{{$detekos->nama}}</h3>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
@@ -22,35 +24,35 @@
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <thead class="">
+                        <th>
+                            Nomor
+                        </th>
                       <th>
-                        Nama
+                        Pertanyaan
                       </th>
-                      <th>
-                        Video
-                      </th>
-                      <th>
-                        Jenis Edukasi
-                      </th>
+
                     <th>
                         Aksi
                     </th>
+
                     </thead>
                     <tbody>
-                        @foreach ($ramodif as $ramodif)
+                        <?php $i=1; ?>
+                        @foreach ($pertanyaan_detekos as $pertanyaan_detekos)
                         <tr>
-                            <td>{{ $ramodif->nama }}</td>
-                            <td>{{ $ramodif->video }}</td>
-                            <td>{{ $ramodif->jenis_edukasi }}</td>
-                            <th>
+                            <td>{{ $i }}</td>
+                            <td>{{ $pertanyaan_detekos->pertanyaan }}</td>
 
-                               <a class="nav-link" href="{{ route('ramodif.edit',$ramodif->id) }}">
+                            <td>
+                                <a class="nav-link" href="{{ route('pertanyaan_detekos.edit',$pertanyaan_detekos->id) }}">
                                     <i class="material-icons">edit</i> Edit
                                   </a>
-                                   <a class="nav-link" href="{{ route('ramodif.hapus',$ramodif->id) }}">
+                                   <a class="nav-link" href="{{ route('pertanyaan_detekos.hapus',$pertanyaan_detekos->id) }}">
                                     <i class="material-icons">remove_circle</i> Hapus
                                   </a>
-                            </th>
+                            </td>
                         </tr>
+                        <?php $i++; ?>
                     @endforeach
 
                     </tbody>
@@ -63,7 +65,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <a href="{{ url('ramodif.insert') }}" class="btn btn-xs btn-info pull-left ml-auto">Tambah</a>
+                    <a href="{{ url('pertanyaan_detekos.insert',$detekos->id) }}" class="btn btn-xs btn-info pull-left ml-auto">Tambah</a>
                 </div>
             </div>
 

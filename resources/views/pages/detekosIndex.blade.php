@@ -42,6 +42,9 @@
                             <td>{{ $detekos->video }}</td>
                             <td>{{ $detekos->jenis_edukasi }}</td>
                             <th>
+                                <a class="nav-link" href="{{ route('pertanyaan_detekos',$detekos->id) }}">
+                                    <i class="material-icons">help_outline</i> Lihat
+                                  </a>
                                <a class="nav-link" href="{{ route('detekos.edit',$detekos->id) }}">
                                     <i class="material-icons">edit</i> Edit
                                   </a>
