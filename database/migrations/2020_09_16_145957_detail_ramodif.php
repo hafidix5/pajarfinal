@@ -15,7 +15,7 @@ class DetailRamodif extends Migration
     {
         Schema::create('detail_ramodif', function (Blueprint $table) {
             $table->id();
-            $table->datetime('waktu');
+            $table->date('waktu');
             $table->string('jawaban');
             $table->BigInteger('pertanyaan_ramodif_id')->unsigned();
             $table->BigInteger('anak_id')->unsigned();

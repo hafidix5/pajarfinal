@@ -77,7 +77,14 @@ class anakController extends Controller
      */
     public function show($id)
     {
-        //
+        $id_user=auth()->user()->id;
+        $anak=pasien::where('pasien.user_id', $id_user)
+        ->Join('anak','anak.pasien_id','=','pasien.id')
+        ->select('anak.nama as nama','anak.id as id')->get();
+        $id_jenisEdukasi=$id;
+
+        return view('pages.pilihAnak',['anak'=>$anak,'id_jenisEdukasi'=>$id_jenisEdukasi]);
+       // dd($anak);
     }
 
     /**

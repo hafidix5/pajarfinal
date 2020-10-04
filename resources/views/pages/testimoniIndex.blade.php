@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'Daftar Ramodif', 'titlePage' => __('Daftar Ramodif')])
+@extends('layouts.app', ['activePage' => 'Daftar Testimoni', 'titlePage' => __('Daftar Testimoni')])
 
 @section('content')
   <div class="content">
@@ -29,28 +29,27 @@
                         Video
                       </th>
                       <th>
-                        Jenis Edukasi
+                        Deteks
                       </th>
                     <th>
                         Aksi
                     </th>
                     </thead>
                     <tbody>
-                        @foreach ($ramodif as $ramodif)
+                        @foreach ($testimoni as $testimoni)
                         <tr>
-                            <td>{{ $ramodif->nama }}</td>
-                            <td>{{ $ramodif->video }}</td>
-                            <td>{{ $ramodif->jenis_edukasi }}</td>
+                            <td>{{ $testimoni->nama }}</td>
+                            <td>{{ $testimoni->video }}</td>
+                            <td>{{ $testimoni->detekos }}</td>
                             <th>
-                                <a class="nav-link" href="{{ route('pertanyaan_ramodif',$ramodif->id) }}">
-                                    <i class="material-icons">help_outline</i> Lihat
-                                  </a>
-                               <a class="nav-link" href="{{ route('ramodif.edit',$ramodif->id) }}">
+
+                               <a class="nav-link" href="{{ route('testimoni.edit',$testimoni->id) }}">
                                     <i class="material-icons">edit</i> Edit
                                   </a>
-                                   <a class="nav-link" href="{{ route('ramodif.hapus',$ramodif->id) }}">
+                                   <a class="nav-link" href="{{ route('testimoni.hapus',$testimoni->id) }}">
                                     <i class="material-icons">remove_circle</i> Hapus
                                   </a>
+
                             </th>
                         </tr>
                     @endforeach
@@ -65,7 +64,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <a href="{{ url('ramodif.insert') }}" class="btn btn-xs btn-info pull-left ml-auto">Tambah</a>
+                    <a href="{{ url('testimoni.insert') }}" class="btn btn-xs btn-info pull-left ml-auto">Tambah</a>
                 </div>
             </div>
 

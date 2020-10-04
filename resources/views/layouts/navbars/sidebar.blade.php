@@ -75,6 +75,12 @@
             </a>
           </li>
           <li class="nav-item{{ $activePage ?? '' }}">
+            <a class="nav-link" href="{{ route('testimoni') }}">
+              <i class="material-icons">assignment_turned_in</i>
+                <p>{{ __('TESTIMONI DETEKS') }}</p>
+            </a>
+          </li>
+          <li class="nav-item{{ $activePage ?? '' }}">
             <a class="nav-link" href="{{ route('ramodif') }}">
               <i class="material-icons">grading</i>
                 <p>{{ __('RAMODIF') }}</p>

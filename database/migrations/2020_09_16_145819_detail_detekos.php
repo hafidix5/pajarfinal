@@ -15,7 +15,7 @@ class DetailDetekos extends Migration
     {
         Schema::create('detail_detekos', function (Blueprint $table) {
             $table->id();
-            $table->datetime('waktu');
+            $table->date('waktu');
             $table->string('jawaban');
             $table->BigInteger('pertanyaan_detekos_id')->unsigned();
             $table->BigInteger('anak_id')->unsigned();

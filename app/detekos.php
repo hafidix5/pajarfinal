@@ -16,4 +16,7 @@ class detekos extends Model
     public function jenisEdukasi(){
         return $this->belongTo('App\jenisEdukasi');
     }
+    public function detekos_testimoni(){
+        return $this->hasMany('App\testimoni');
+    }
 }

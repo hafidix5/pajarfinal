@@ -13,4 +13,7 @@ class anak extends Model
     public function admin(){
         return $this->belongsTo('App\pasien');
     }
+    public function Detail_anak(){
+        return $this->hasMany('App\detail_insting');
+    }
 }

@@ -52,7 +52,7 @@
                     <label class="col-sm-2 col-form-label">{{ __('Usia') }}</label>
                     <div class="col-sm-7">
                       <div class="form-group{{ $errors->has('usia') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('usia') ? ' is-invalid' : '' }}" name="usia" id="input-usia" type="text" placeholder="{{ __('') }}" value="" required />
+                        <input class="form-control{{ $errors->has('usia') ? ' is-invalid' : '' }}" name="usia" id="input-usia" type="number" placeholder="{{ __('') }}" value="" required />
                         @if ($errors->has('usia'))
                           <span id="usia-error" class="error text-danger" for="input-usia">{{ $errors->first('usia') }}</span>
                         @endif
@@ -78,7 +78,7 @@
                     <label class="col-sm-2 col-form-label">{{ __('Anak ke-') }}</label>
                     <div class="col-sm-7">
                       <div class="form-group{{ $errors->has('anak_ke') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('anak_ke') ? ' is-invalid' : '' }}" name="anak_ke" id="input-anak_ke" type="text" placeholder="{{ __('') }}" value="" required />
+                        <input class="form-control{{ $errors->has('anak_ke') ? ' is-invalid' : '' }}" name="anak_ke" id="input-anak_ke" type="number" placeholder="{{ __('') }}" value="" required />
                         @if ($errors->has('anak_ke'))
                           <span id="anak_ke-error" class="error text-danger" for="input-anak_ke">{{ $errors->first('anak_ke') }}</span>
                         @endif

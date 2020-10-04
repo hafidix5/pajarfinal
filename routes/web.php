@@ -41,7 +41,7 @@ Route::get('riwayatdetail/{tanggal}/DetailKuesioner/{id}', 'jawaban_kuesionerCon
 
     Route::get('jenisEdukasi', 'jenisEdukasiController@index')->name('jenisEdukasi');
     Route::get('jenisEdukasi.insert', 'jenisEdukasiController@insert')->name('jenisEdukasi.insert');
-    Route::get('pilihAnak/{id}', 'AnakController@pilih')->name('pilihAnak');
+    Route::get('pilihAnak/{id}', 'AnakController@show')->name('pilihAnak');
     Route::get('pilingIinsting', 'jenisEdukasiController@show')->name('pilihInsting');
     Route::post('jenisEdukasi.store', ['as' => 'jenisEdukasi.store', 'uses' => 'jenisEdukasiController@store']);
     Route::get('jenisEdukasi.edit/{id}', ['as' => 'jenisEdukasi.edit', 'uses' => 'jenisEdukasiController@edit']);
@@ -76,6 +76,13 @@ Route::get('riwayatdetail/{tanggal}/DetailKuesioner/{id}', 'jawaban_kuesionerCon
     Route::put('puskesmas.update/{id}', ['as' => 'puskesmas.update', 'uses' => 'puskesmasController@update']);
     Route::get('puskesmas.hapus/{id}', ['as' => 'puskesmas.hapus', 'uses' => 'puskesmasController@destroy']);
 
+    Route::get('testimoni', 'testimoniController@index')->name('testimoni');
+    Route::get('testimoni.insert', 'testimoniController@insert')->name('testimoni.insert');
+    Route::post('testimoni.store', ['as' => 'testimoni.store', 'uses' => 'testimoniController@store']);
+    Route::get('testimoni.edit/{id}', ['as' => 'testimoni.edit', 'uses' => 'testimoniController@edit']);
+    Route::put('testimoni.update/{id}', ['as' => 'testimoni.update', 'uses' => 'testimoniController@update']);
+    Route::get('testimoni.hapus/{id}', ['as' => 'testimoni.hapus', 'uses' => 'testimoniController@destroy']);
+
     Route::get('pertanyaan_insting/{id}', 'pertanyaan_instingController@show')->name('pertanyaan_insting');
     Route::get('pertanyaan_insting.insert/{id}', 'pertanyaan_instingController@insert')->name('pertanyaan_insting.insert');
     Route::post('pertanyaan_insting.store', ['as' => 'pertanyaan_insting.store', 'uses' => 'pertanyaan_instingController@store']);
@@ -90,6 +97,15 @@ Route::get('riwayatdetail/{tanggal}/DetailKuesioner/{id}', 'jawaban_kuesionerCon
     Route::put('pertanyaan_detekos.update/{id}/{id2}', ['as' => 'pertanyaan_detekos.update', 'uses' => 'pertanyaan_detekosController@update']);
     Route::get('pertanyaan_detekos.hapus/{id}', ['as' => 'pertanyaan_detekos.hapus', 'uses' => 'pertanyaan_detekosController@destroy']);
 
+    Route::get('pertanyaan_ramodif/{id}', 'pertanyaan_ramodifController@show')->name('pertanyaan_ramodif');
+    Route::get('pertanyaan_ramodif.insert/{id}', 'pertanyaan_ramodifController@insert')->name('pertanyaan_ramodif.insert');
+    Route::post('pertanyaan_ramodif.store', ['as' => 'pertanyaan_ramodif.store', 'uses' => 'pertanyaan_ramodifController@store']);
+    Route::get('pertanyaan_ramodif.edit/{id}', ['as' => 'pertanyaan_ramodif.edit', 'uses' => 'pertanyaan_ramodifController@edit']);
+    Route::put('pertanyaan_ramodif.update/{id}/{id2}', ['as' => 'pertanyaan_ramodif.update', 'uses' => 'pertanyaan_ramodifController@update']);
+    Route::get('pertanyaan_ramodif.hapus/{id}', ['as' => 'pertanyaan_ramodif.hapus', 'uses' => 'pertanyaan_ramodifController@destroy']);
+
+    Route::get('kuesioner_insting/{idAnak}/{idJenisEdukasi})', 'detail_instingController@show')->name('kuesioner_insting');
+    Route::post('kuesioner_instingSave)', 'detail_instingController@store')->name('kuesioner_instingSave');
 
     Route::get('icons', function () {
 		return view('pages.icons');

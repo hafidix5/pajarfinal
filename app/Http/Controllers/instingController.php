@@ -30,6 +30,7 @@ class instingController extends Controller
     public function insert()
     {
         $jenisEdukasi=jenisEdukasi::all();
+
         return view('pages.instingInsert',['jenisEdukasi'=>$jenisEdukasi]);
     }
 
@@ -52,7 +53,14 @@ class instingController extends Controller
     public function store(Request $request)
     {
        // dd($request->jenisEdukasi_id);
-
+       $cek_insting=insting::where('insting.jenis_edukasi_id', $request->jenisEdukasi_id)
+       ->select('insting.id as id')->first();
+       if($cek_insting)
+       {
+        return redirect('insting')->withStatus(__('Pilih jenis Edukasi Berbeda'));
+       }
+       else
+       {
         $this->validate($request,[
     		'nama' => 'required',
             'video' => 'required',
@@ -66,6 +74,10 @@ class instingController extends Controller
     	]);
 
             return redirect('insting')->withStatus(__('Data berhasil disimpan'));
+       }
+
+
+
     }
 
     /**
@@ -104,6 +116,14 @@ class instingController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $cek_insting=insting::where('insting.jenis_edukasi_id', $request->jenisEdukasi_id)
+       ->select('insting.id as id')->first();
+       if($cek_insting)
+       {
+        return redirect('insting')->withStatus(__('Pilih jenis Edukasi Berbeda'));
+       }
+       else
+       {
         $this->validate($request,[
     		'nama' => 'required',
             'video' => 'required',
@@ -116,6 +136,9 @@ class instingController extends Controller
          $insting->jenis_edukasi_id = $request->jenisEdukasi_id;
          $insting->save();
          return redirect('insting')->withStatus(__('Data berhasil diubah'));
+       }
+
+
     }
 
     /**

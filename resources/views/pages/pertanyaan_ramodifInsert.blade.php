@@ -1,11 +1,11 @@
-@extends('layouts.app', ['activePage' => 'Tambah Pertanyaan Deteks', 'titlePage' => __('Tambah Pertanyaan Deteks')])
+@extends('layouts.app', ['activePage' => 'Tambah Pertanyaan Ramodif', 'titlePage' => __('Tambah Pertanyaan Ramodif')])
 
 @section('content')
   <div class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('pertanyaan_detekos.store') }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="{{ route('pertanyaan_ramodif.store') }}" autocomplete="off" class="form-horizontal">
             @csrf
             @method('post')
 
@@ -39,10 +39,10 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-7">
-                      <div class="form-group{{ $errors->has('insting') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('insting') ? ' is-invalid' : '' }}" name="detekos_id" id="input-insting" type="hidden" value="{{$detekos_id}}" required="true" aria-required="true"/>
-                        @if ($errors->has('insting'))
-                          <span id="insting-error" class="error text-danger" for="input-insting">{{ $errors->first('insting') }}</span>
+                      <div class="form-group{{ $errors->has('ramodif') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('ramodif') ? ' is-invalid' : '' }}" name="ramodif_id" id="input-ramodif" type="hidden" value="{{$ramodif_id}}" required="true" aria-required="true"/>
+                        @if ($errors->has('ramodif'))
+                          <span id="ramodif-error" class="error text-danger" for="input-ramodif">{{ $errors->first('ramodif') }}</span>
                         @endif
                       </div>
                     </div>

@@ -33,7 +33,7 @@
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
-                    <i class="material-icons">email</i>
+                    <i class="material-icons">phone</i>
                   </span>
                 </div>
                 <input type="number" name="email" class="form-control" placeholder="{{ __('Nomor HP...') }}" value="{{ old('email') }}" required>

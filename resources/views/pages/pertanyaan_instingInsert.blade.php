@@ -11,7 +11,7 @@
 
             <div class="card ">
               <div class="card-header card-header-primary">
-                <h4 class="card-title">{{ __('Tambah Informasi Penting') }}</h4>
+                <h4 class="card-title">{{ __('Tambah') }}</h4>
               </div>
               <div class="card-body ">
                 @if (session('status'))
