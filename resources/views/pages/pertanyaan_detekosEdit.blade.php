@@ -5,13 +5,13 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('pertanyaan_detekos.update',$pertanyaan_detekos->id ) }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="{{ route('pertanyaan_detekos.update',[$pertanyaan_detekos->id,$pertanyaan_detekos->detekos_id] ) }}" autocomplete="off" class="form-horizontal">
             @csrf
             @method('PUT')
 
             <div class="card ">
               <div class="card-header card-header-primary">
-                <h4 class="card-title">{{ __('Ubah Informasi Penting') }}</h4>
+                <h4 class="card-title">{{ __('Ubah Pertanyaan') }}</h4>
               </div>
               <div class="card-body ">
                 @if (session('status'))

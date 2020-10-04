@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ __('WEB HICORE') }}</title>
+    <title>{{ __('WEB PAJAR') }}</title>
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('material') }}/img/apple-icon.png">
     <link rel="icon" type="image/png" href="{{ asset('material') }}/img/favicon.png">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -30,7 +30,7 @@
               -->
               <div class="logo">
                 <a href="#" class="simple-text logo-normal">
-                  {{ __('WEB HICORE') }}
+                  {{ __('WEB PAJAR') }}
                 </a>
               </div>
               <div class="sidebar-wrapper">

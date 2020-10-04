@@ -90,8 +90,10 @@ class pertanyaan_instingController extends Controller
     public function edit($id)
     {
         $pertanyaan_insting=pertanyaan_insting::where('pertanyaan_insting.id', $id)
-        ->select('pertanyaan_insting.pertanyaan as pertanyaan','pertanyaan_insting.id as id')->first();
-        return view('pages.pertanyaan_instingEdit',['pertanyaan_insting'=>$pertanyaan_insting]);
+        ->select('pertanyaan_insting.pertanyaan as pertanyaan','pertanyaan_insting.id as id',
+        'pertanyaan_insting.insting_id')->first();
+       return view('pages.pertanyaan_instingEdit',['pertanyaan_insting'=>$pertanyaan_insting]);
+      // dd($pertanyaan_insting);
     }
 
     /**
@@ -101,20 +103,28 @@ class pertanyaan_instingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $insting_id)
     {
         $this->validate($request,[
-    		'pertanyaan' => 'required',
-            'insting_id' => 'required'
+    		'pertanyaan' => 'required'
     	]);
 
          $pertanyaan_insting = pertanyaan_insting::find($id);
          $pertanyaan_insting->pertanyaan = $request->pertanyaan;
-         $pertanyaan_insting->insting_id = $request->insting_id;
          $pertanyaan_insting->save();
-         $insting=insting::where('id','=',$request->insting_id)->select('insting.nama as nama','insting.id as id')->first();
-         return redirect()->route('pertanyaan_insting', ['id' => $request->insting_id,'insting'=>$insting])
-            ->withStatus(__('Data berhasil diubah'));
+
+       // $insting=insting::where('id','=',$insting_id)->select('insting.nama as nama','insting.id as id')->first();
+         //dd($insting->nama);
+         $pertanyaan_insting=pertanyaan_insting::where('pertanyaan_insting.insting_id', $insting_id)
+        ->Join('insting','pertanyaan_insting.insting_id','=','insting.id')
+        ->select('pertanyaan_insting.pertanyaan as pertanyaan','insting.nama as nama',
+        'pertanyaan_insting.id as id')->get();
+        $insting=insting::where('id','=',$insting_id)->select('insting.nama as nama','insting.id as id')->first();
+        return view('pages.pertanyaan_instingIndex',['pertanyaan_insting'=>$pertanyaan_insting,
+        'insting'=>$insting]);
+
+
+
     }
 
     /**

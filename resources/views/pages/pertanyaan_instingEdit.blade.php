@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('pertanyaan_insting.update',$pertanyaan_insting->id ) }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="{{ route('pertanyaan_insting.update',[$pertanyaan_insting->id,$pertanyaan_insting->insting_id] ) }}" autocomplete="off" class="form-horizontal">
             @csrf
             @method('PUT')
 
@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col-sm-7">
                       <div class="form-group{{ $errors->has('insting_id') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('insting_id') ? ' is-invalid' : '' }}" name="insting_id" id="input-insting_id" type="hidden" placeholder="{{ __('link insting_id') }}" value="{{$pertanyaan_insting->id}}" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('insting_id') ? ' is-invalid' : '' }}" name="insting_id" id="input-insting_id" type="text" placeholder="{{ __('link insting_id') }}" value="{{$pertanyaan_insting->id}}" required="true" aria-required="true"/>
                         @if ($errors->has('insting_id'))
                           <span id="insting_id-error" class="error text-danger" for="input-insting_id">{{ $errors->first('insting_id') }}</span>
                         @endif

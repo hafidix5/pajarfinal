@@ -80,14 +80,14 @@ Route::get('riwayatdetail/{tanggal}/DetailKuesioner/{id}', 'jawaban_kuesionerCon
     Route::get('pertanyaan_insting.insert/{id}', 'pertanyaan_instingController@insert')->name('pertanyaan_insting.insert');
     Route::post('pertanyaan_insting.store', ['as' => 'pertanyaan_insting.store', 'uses' => 'pertanyaan_instingController@store']);
     Route::get('pertanyaan_insting.edit/{id}', ['as' => 'pertanyaan_insting.edit', 'uses' => 'pertanyaan_instingController@edit']);
-    Route::put('pertanyaan_insting.update/{id}', ['as' => 'pertanyaan_insting.update', 'uses' => 'pertanyaan_instingController@update']);
+    Route::put('pertanyaan_insting.update/{id}/{id2}', ['as' => 'pertanyaan_insting.update', 'uses' => 'pertanyaan_instingController@update']);
     Route::get('pertanyaan_insting.hapus/{id}', ['as' => 'pertanyaan_insting.hapus', 'uses' => 'pertanyaan_instingController@destroy']);
 
     Route::get('pertanyaan_detekos/{id}', 'pertanyaan_detekosController@show')->name('pertanyaan_detekos');
     Route::get('pertanyaan_detekos.insert/{id}', 'pertanyaan_detekosController@insert')->name('pertanyaan_detekos.insert');
     Route::post('pertanyaan_detekos.store', ['as' => 'pertanyaan_detekos.store', 'uses' => 'pertanyaan_detekosController@store']);
     Route::get('pertanyaan_detekos.edit/{id}', ['as' => 'pertanyaan_detekos.edit', 'uses' => 'pertanyaan_detekosController@edit']);
-    Route::put('pertanyaan_detekos.update/{id}', ['as' => 'pertanyaan_detekos.update', 'uses' => 'pertanyaan_detekosController@update']);
+    Route::put('pertanyaan_detekos.update/{id}/{id2}', ['as' => 'pertanyaan_detekos.update', 'uses' => 'pertanyaan_detekosController@update']);
     Route::get('pertanyaan_detekos.hapus/{id}', ['as' => 'pertanyaan_detekos.hapus', 'uses' => 'pertanyaan_detekosController@destroy']);
 
 

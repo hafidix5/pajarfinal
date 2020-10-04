@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\pertanyaan_detekos;
 use App\detekos;
-use App\insting;
 
 class pertanyaan_detekosController extends Controller
 {
@@ -86,8 +85,10 @@ class pertanyaan_detekosController extends Controller
     public function edit($id)
     {
         $pertanyaan_detekos=pertanyaan_detekos::where('pertanyaan_detekos.id', $id)
-        ->select('pertanyaan_detekos.pertanyaan as pertanyaan','pertanyaan_detekos.id as id')->first();
-        return view('pages.pertanyaan_detekosEdit',['pertanyaan_detekos'=>$pertanyaan_detekos]);
+        ->select('pertanyaan_detekos.pertanyaan as pertanyaan','pertanyaan_detekos.id as id',
+        'pertanyaan_detekos.detekos_id')->first();
+       return view('pages.pertanyaan_detekosEdit',['pertanyaan_detekos'=>$pertanyaan_detekos]);
+      //dd($pertanyaan_detekos);
     }
 
     /**
@@ -97,20 +98,27 @@ class pertanyaan_detekosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $detekos_id)
     {
         $this->validate($request,[
-    		'pertanyaan' => 'required',
-            'detekos_id' => 'required'
+    		'pertanyaan' => 'required'
     	]);
 
          $pertanyaan_detekos = pertanyaan_detekos::find($id);
          $pertanyaan_detekos->pertanyaan = $request->pertanyaan;
-         $pertanyaan_detekos->detekos_id = $request->detekos_id;
          $pertanyaan_detekos->save();
-         $insting=insting::where('id','=',$request->detekos_id)->select('insting.nama as nama','insting.id as id')->first();
-         return redirect()->route('pertanyaan_detekos', ['id' => $request->detekos_id,'insting'=>$insting])
-            ->withStatus(__('Data berhasil diubah'));
+
+       // $insting=insting::where('id','=',$insting_id)->select('insting.nama as nama','insting.id as id')->first();
+         //dd($insting->nama);
+         $pertanyaan_detekos=pertanyaan_detekos::where('detekos.id', $detekos_id)
+         ->Join('detekos','pertanyaan_detekos.detekos_id','=','detekos.id')
+         ->select('pertanyaan_detekos.pertanyaan as pertanyaan','detekos.nama as nama',
+         'pertanyaan_detekos.id as id')->get();
+         $detekos=detekos::where('id','=',$detekos_id)->select('detekos.nama as nama','detekos.id as id')->first();
+         return view('pages.pertanyaan_detekosIndex',['pertanyaan_detekos'=>$pertanyaan_detekos,
+         'detekos'=>$detekos]);
+
+
     }
 
     /**
@@ -123,8 +131,8 @@ class pertanyaan_detekosController extends Controller
     {
         $pertanyaan_detekos=pertanyaan_detekos::find($id);
         $pertanyaan_detekos->delete();
-        $insting=insting::where('id','=',$pertanyaan_detekos->insting_id)->select('insting.nama as nama','insting.id as id')->first();
-         return redirect()->route('pertanyaan_detekos', ['id' => $pertanyaan_detekos->insting_id,'insting'=>$insting])
+        $detekos=detekos::where('id','=',$pertanyaan_detekos->detekos_id)->select('detekos.nama as nama','detekos.id as id')->first();
+         return redirect()->route('pertanyaan_detekos', ['id' => $pertanyaan_detekos->detekos_id,'detekos'=>$detekos])
             ->withStatus(__('Data berhasil dihapus'));
     }
 }
