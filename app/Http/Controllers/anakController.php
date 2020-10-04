@@ -60,6 +60,8 @@ class anakController extends Controller
         DB::table('anak')->insert([
             'nama' => $request->nama,
             'tgl_lahir' => $request->tgl_lahir,
+            'anak_ke' => $request->anak_ke,
+            'usia' => $request->usia,
             'jenis_kelamin' => $request->jk,
             'pasien_id' => $request->pasien_id
            ]);
@@ -103,6 +105,8 @@ class anakController extends Controller
     {
         DB::table('anak')->where('id',$id)->update([
         'nama' => $request->nama,
+        'usia' => $request->usia,
+        'anak_ke' => $request->anak_ke,
         'tgl_lahir' => $request->tgl_lahir,
         'jenis_kelamin' => $request->jk,
 

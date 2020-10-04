@@ -8,7 +8,7 @@ class anak extends Model
 {
     protected $table='anak';
     protected $fillable = [
-        'nama','jk','tgl_lahir','pasien_id'
+        'nama','jk','tgl_lahir','usia','anak_ke','pasien_id'
     ];
     public function admin(){
         return $this->belongsTo('App\pasien');

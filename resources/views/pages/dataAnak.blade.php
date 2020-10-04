@@ -31,7 +31,13 @@
                 Tanggal Lahir
               </th>
               <th>
+                Usia
+              </th>
+              <th>
                 Jenis Kelamin
+              </th>
+              <th>
+                Anak Ke-
               </th>
             <th>
                 Aksi
@@ -42,8 +48,10 @@
                 @foreach ($anak as $anak)
                 <tr>
                     <td>{{ $anak->nama }}</td>
+                    <td>{{ $anak->tgl_lahir }}</td>
                     <td>{{ \Carbon\Carbon::parse($anak->tgl_lahir)->format('d/m/Y')}}</td>
                     <td>{{ $anak->jenis_kelamin }}</td>
+                    <td>{{ $anak->anak_ke }}</td>
                     <th>
                         <a class="nav-link" href="{{ route('anak.edit',$anak->id) }}">
                             <i class="material-icons">edit</i> Edit

@@ -17,6 +17,8 @@ class CreateAnak extends Migration
             $table->id();
             $table->string('nama');
             $table->date('tgl_lahir');
+            $table->string('usia');
+            $table->string('anak_ke');
             $table->string('jenis_kelamin',20);
             $table->BigInteger('pasien_id')->unsigned();
             $table->timestamps();
