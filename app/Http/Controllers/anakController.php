@@ -21,7 +21,7 @@ class anakController extends Controller
         {
         $id=auth()->user()->id;
         $pasien=DB::table('pasien')->where('user_id',$id)->first();
-        $anak=DB::table('anak')->where('pasien_id',$pasien->id)->get();
+        $anak=DB::table('anak')->where('pasien_id',$pasien->id)->orderBy('id', 'DESC')->get();
 
         return view('pages.dataAnak',['anak'=>$anak]);
         }

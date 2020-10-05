@@ -22,6 +22,10 @@
           </div>
         </div>
       @endif
+      <div class="embed-responsive embed-responsive-16by9">
+      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{$video->video}}?rel=0" allowfullscreen></iframe>
+      </div>
+      <br><br>
         <div class="table-responsive">
           <table class="table table-hover">
             <thead class="">

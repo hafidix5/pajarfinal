@@ -56,8 +56,11 @@ class detail_instingController extends Controller
             ->select('pertanyaan_insting.pertanyaan as pertanyaan',
             'pertanyaan_insting.id as id')
             ->get();
+            $video=insting::where('insting.jenis_edukasi_id', $idJenisEdukasi)
+            ->select('insting.video as video')->first();
            // dd($detail_insting);
-            return view('pages.kuesioner_insting',['detail_insting'=>$detail_insting]);
+            return view('pages.kuesioner_insting',['detail_insting'=>$detail_insting,
+            'video'=>$video]);
         }
         else
         {

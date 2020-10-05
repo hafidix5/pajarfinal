@@ -48,8 +48,8 @@
                 @foreach ($anak as $anak)
                 <tr>
                     <td>{{ $anak->nama }}</td>
-                    <td>{{ $anak->tgl_lahir }}</td>
                     <td>{{ \Carbon\Carbon::parse($anak->tgl_lahir)->format('d/m/Y')}}</td>
+                    <td>{{ \Carbon\Carbon::parse($anak->tgl_lahir)->age}}</td>
                     <td>{{ $anak->jenis_kelamin }}</td>
                     <td>{{ $anak->anak_ke }}</td>
                     <th>
