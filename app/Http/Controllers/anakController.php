@@ -87,6 +87,30 @@ class anakController extends Controller
        // dd($anak);
     }
 
+    public function showDeteks($id)
+    {
+        $id_user=auth()->user()->id;
+        $anak=pasien::where('pasien.user_id', $id_user)
+        ->Join('anak','anak.pasien_id','=','pasien.id')
+        ->select('anak.nama as nama','anak.id as id')->get();
+        $id_jenisEdukasi=$id;
+
+        return view('pages.pilihAnakDeteks',['anak'=>$anak,'id_jenisEdukasi'=>$id_jenisEdukasi]);
+       // dd($anak);
+    }
+
+    public function showRamodif($id)
+    {
+        $id_user=auth()->user()->id;
+        $anak=pasien::where('pasien.user_id', $id_user)
+        ->Join('anak','anak.pasien_id','=','pasien.id')
+        ->select('anak.nama as nama','anak.id as id')->get();
+        $id_jenisEdukasi=$id;
+
+        return view('pages.pilihAnakRamodif',['anak'=>$anak,'id_jenisEdukasi'=>$id_jenisEdukasi]);
+       // dd($anak);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

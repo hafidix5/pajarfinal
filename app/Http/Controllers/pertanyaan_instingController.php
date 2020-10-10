@@ -46,9 +46,20 @@ class pertanyaan_instingController extends Controller
         $this->validate($request,[
     		'pertanyaan' => 'required',
             'insting_id' => 'required'
-    	]);
+        ]);
+        $no_insting=pertanyaan_insting::where('insting_id', $request->insting_id)->count();
+        if($no_insting==null)
+        {
+            $no_insting=1;
+        }
+        else
+        {
+            $no_insting++;
+        }
+
 
         pertanyaan_insting::create([
+            'id'=>$no_insting,
             'pertanyaan' => $request->pertanyaan,
             'insting_id' => $request->insting_id
         ]);

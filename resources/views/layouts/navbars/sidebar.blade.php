@@ -26,23 +26,49 @@
           </li>
 
       <li class="nav-item{{ $activePage ?? '' }}">
-        <a class="nav-link" href="{{ route('pilihInsting') }}">
-          <i class="material-icons">library_books</i>
-            <p>{{ __('INSTING') }}</p>
-        </a>
+        <a href="#instingpSubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link">
+             <i class="material-icons">library_books</i>
+             INSTING
+            </a>
+        <ul class="collapse list-unstyled" id="instingpSubmenu">
+            <li class="nav-link">
+                <a  href="{{ route('pilihEdukasi') }}">Lihat</a>
+            </li>
+            <li class="nav-link">
+              <a  href="{{ route('pilihEdukasi') }}">Hasil</a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item{{ $activePage ?? '' }}">
+        <a href="#detekospSubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link">
+             <i class="material-icons">assignment_turned_in</i>
+             DETEKS
+            </a>
+        <ul class="collapse list-unstyled" id="detekospSubmenu">
+            <li class="nav-link">
+                <a  href="{{ route('pilihEdukasiDeteks') }}">Lihat</a>
+            </li>
+            <li class="nav-link">
+              <a  href="{{ route('pilihEdukasiDeteks') }}">Hasil</a>
+            </li>
+        </ul>
       </li>
       <li class="nav-item{{ $activePage ?? '' }}">
-        <a class="nav-link" href="{{ route('riwayat') }}">
-          <i class="material-icons">assignment_turned_in</i>
-            <p>{{ __('DETEKOS') }}</p>
-        </a>
+        <a href="#ramodifSubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link">
+             <i class="material-icons">grading</i>
+             RAMODIF
+            </a>
+        <ul class="collapse list-unstyled" id="ramodifSubmenu">
+            <li class="nav-link">
+                <a  href="{{ route('pilihEdukasiRamodif') }}">Lihat</a>
+            </li>
+            <li class="nav-link">
+              <a  href="{{ route('pilihEdukasiRamodif') }}">Hasil</a>
+            </li>
+        </ul>
       </li>
-      <li class="nav-item{{ $activePage ?? '' }}">
-        <a class="nav-link" href="{{ route('riwayat') }}">
-          <i class="material-icons">grading</i>
-            <p>{{ __('RAMODIF') }}</p>
-        </a>
-      </li>
+
 
         @endif
 
@@ -62,17 +88,33 @@
           </a>
         </li>
 
-        <li class="nav-item{{ $activePage ?? '' }}">
-            <a class="nav-link" href="{{ route('insting') }}">
-              <i class="material-icons">library_books</i>
-                <p>{{ __('INSTING') }}</p>
-            </a>
+          <li class="nav-item{{ $activePage ?? '' }}">
+            <a href="#instingSubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link">
+                 <i class="material-icons">library_books</i>
+                 INSTING
+                </a>
+            <ul class="collapse list-unstyled" id="instingSubmenu">
+                <li class="nav-link">
+                    <a  href="{{ route('insting') }}">Lihat</a>
+                </li>
+                <li class="nav-link">
+                  <a  href="{{ route('insting') }}">Hasil</a>
+                </li>
+            </ul>
           </li>
           <li class="nav-item{{ $activePage ?? '' }}">
-            <a class="nav-link" href="{{ route('detekos') }}">
-              <i class="material-icons">assignment_turned_in</i>
-                <p>{{ __('DETEKS') }}</p>
-            </a>
+            <a href="#deteksSubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link">
+                 <i class="material-icons">assignment_turned_in</i>
+                 DETEKS
+                </a>
+            <ul class="collapse list-unstyled" id="deteksSubmenu">
+                <li class="nav-link">
+                    <a  href="{{ route('detekos') }}">Lihat</a>
+                </li>
+                <li class="nav-link">
+                  <a  href="{{ route('detekos') }}">Hasil</a>
+                </li>
+            </ul>
           </li>
           <li class="nav-item{{ $activePage ?? '' }}">
             <a class="nav-link" href="{{ route('testimoni') }}">
@@ -81,17 +123,27 @@
             </a>
           </li>
           <li class="nav-item{{ $activePage ?? '' }}">
-            <a class="nav-link" href="{{ route('ramodif') }}">
-              <i class="material-icons">grading</i>
-                <p>{{ __('RAMODIF') }}</p>
-            </a>
+            <a href="#ramodifSubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link">
+                 <i class="material-icons">grading</i>
+                 RAMODIF
+                </a>
+            <ul class="collapse list-unstyled" id="ramodifSubmenu">
+                <li class="nav-link">
+                    <a  href="{{ route('ramodif') }}">Lihat</a>
+                </li>
+                <li class="nav-link">
+                  <a  href="{{ route('ramodif') }}">Hasil</a>
+                </li>
+            </ul>
           </li>
+
           <li class="nav-item{{ $activePage ?? '' }}">
             <a class="nav-link" href="{{ route('puskesmas') }}">
               <i class="material-icons">grading</i>
-                <p>{{ __('Puskesmas') }}</p>
+              <p>{{ __('Puskesmas') }}</p>
             </a>
           </li>
+
 
       @endif
       <li class="nav-item{{ $activePage ?? '' }}">

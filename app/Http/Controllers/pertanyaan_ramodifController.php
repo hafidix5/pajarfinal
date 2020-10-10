@@ -49,7 +49,17 @@ class pertanyaan_ramodifController extends Controller
             'ramodif_id' => 'required'
     	]);
 
+        $no_ramodif=pertanyaan_ramodif::where('ramodif_id', $request->ramodif_id)->count();
+        if($no_ramodif==null)
+        {
+            $no_ramodif=1;
+        }
+        else
+        {
+            $no_ramodif++;
+        }
         pertanyaan_ramodif::create([
+            'id'=>$no_ramodif,
             'pertanyaan' => $request->pertanyaan,
             'ramodif_id' => $request->ramodif_id
         ]);

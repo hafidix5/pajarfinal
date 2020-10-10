@@ -5,8 +5,8 @@
   <div class="container-fluid">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title">Insting</h4>
-        <p class="card-category">Kuesioner Informasi Penting</p>
+        <h4 class="card-title">Deteks</h4>
+        <p class="card-category">Kuesioner Deteksi</p>
       </div>
 
       <div class="card-body">
@@ -41,17 +41,17 @@
 
             </thead>
             <tbody>
-                <form method="post" action="{{ route('kuesioner_instingSave',[$id_anak,$video->id]) }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('kuesioner_detekosSave',[$id_anak,$video->id]) }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('post')
                     <?php $i=1; ?>
-            @foreach ($detail_insting as $detail_insting)
+            @foreach ($detail_detekos as $detail_detekos)
                 <tr>
                     <td>{{ $i }}</td>
-                    <td>{{ $detail_insting->pertanyaan }}</td>
+                    <td>{{ $detail_detekos->pertanyaan }}</td>
                     <td class="text-left">
-                        <span><input type="radio" id={{ $detail_insting->id }} name={{ 'pertanyaan'.$detail_insting->id }} value="1" required/> Benar</span><br>
-                        <span><input type="radio" id={{ $detail_insting->id }} name={{ 'pertanyaan'.$detail_insting->id }} value="0"/> Salah</span><br/>
+                        <span><input type="radio" id={{ $detail_detekos->id }} name={{ 'pertanyaan'.$detail_detekos->id }} value="1" required/> Iya</span><br>
+                        <span><input type="radio" id={{ $detail_detekos->id }} name={{ 'pertanyaan'.$detail_detekos->id }} value="0"/> Tidak</span><br/>
                    </div>
                     </td>
 

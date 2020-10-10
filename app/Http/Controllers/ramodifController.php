@@ -113,7 +113,7 @@ class ramodifController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cek_ramodif=ramodif::where('ramodif.jenis_edukasi_id', $request->jenisEdukasi_id)
+       /*  $cek_ramodif=ramodif::where('ramodif.jenis_edukasi_id', $request->jenisEdukasi_id)
        ->select('ramodif.id as id')->first();
        if($cek_ramodif)
        {
@@ -121,19 +121,20 @@ class ramodifController extends Controller
        }
        else
        {
-        $this->validate($request,[
-    		'nama' => 'required',
-            'video' => 'required',
-            'jenisEdukasi_id' => 'required'
-    	]);
 
-         $ramodif = ramodif::find($id);
-         $ramodif->nama = $request->nama;
-         $ramodif->video = $request->video;
-         $ramodif->jenis_edukasi_id = $request->jenisEdukasi_id;
-         $ramodif->save();
-         return redirect('ramodif')->withStatus(__('Data berhasil diubah'));
-       }
+       } */
+       $this->validate($request,[
+        'nama' => 'required',
+        'video' => 'required',
+        'jenisEdukasi_id' => 'required'
+    ]);
+
+     $ramodif = ramodif::find($id);
+     $ramodif->nama = $request->nama;
+     $ramodif->video = $request->video;
+     $ramodif->jenis_edukasi_id = $request->jenisEdukasi_id;
+     $ramodif->save();
+     return redirect('ramodif')->withStatus(__('Data berhasil diubah'));
 
 
     }

@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class pertanyaan_ramodif extends Model
 {
     protected $table='pertanyaan_ramodif';
+    protected $primaryKey='id';
     protected $fillable = [
-        'pertanyaan','ramodif_id'
+        'id','pertanyaan','ramodif_id'
     ];
     public function ramodif_jawaban(){
         return $this->hasMany('App\pertanyaan_ramodif');

@@ -117,7 +117,7 @@ class detekosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cek_detekos=detekos::where('detekos.jenis_edukasi_id', $request->jenisEdukasi_id)
+        /* $cek_detekos=detekos::where('detekos.jenis_edukasi_id', $request->jenisEdukasi_id)
        ->select('detekos.id as id')->first();
        if($cek_detekos)
        {
@@ -125,19 +125,20 @@ class detekosController extends Controller
        }
        else
        {
-        $this->validate($request,[
-    		'nama' => 'required',
-            'video' => 'required',
-            'jenisEdukasi_id' => 'required'
-    	]);
 
-         $detekos = detekos::find($id);
-         $detekos->nama = $request->nama;
-         $detekos->video = $request->video;
-         $detekos->jenis_edukasi_id = $request->jenisEdukasi_id;
-         $detekos->save();
-         return redirect('detekos')->withStatus(__('Data berhasil diubah'));
-       }
+       } */
+       $this->validate($request,[
+        'nama' => 'required',
+        'video' => 'required',
+        'jenisEdukasi_id' => 'required'
+    ]);
+
+     $detekos = detekos::find($id);
+     $detekos->nama = $request->nama;
+     $detekos->video = $request->video;
+     $detekos->jenis_edukasi_id = $request->jenisEdukasi_id;
+     $detekos->save();
+     return redirect('detekos')->withStatus(__('Data berhasil diubah'));
 
 
     }

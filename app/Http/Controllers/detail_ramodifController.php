@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\pasien;
-use App\insting;
-use App\detail_insting;
+use App\ramodif;
+use App\detail_ramodif;
 use Carbon\Carbon;
-use App\pertanyaan_insting;
+use App\pertanyaan_ramodif;
 
-class detail_instingController extends Controller
+class detail_ramodifController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,20 +38,20 @@ class detail_instingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$idAnak,$idinsting)
+    public function store(Request $request,$idAnak,$idramodif)
     {
 
         $date=Carbon::now();
         $date=$date->toDateString();
-       // $no=pertanyaan_insting::where('insting_id', $idinsting)->min();
-        $nomor=pertanyaan_insting::where('insting_id', $idinsting)
+       // $no=pertanyaan_ramodif::where('ramodif_id', $idramodif)->min();
+        $nomor=pertanyaan_ramodif::where('ramodif_id', $idramodif)
         ->select('id')
         ->orderBy('id','asc')
         ->first();
         $no=$nomor->id;
         $data=$request->except(['_token', '_method']);
        // dd($data);
-        $cek = detail_insting::where('waktu',$date)->first();
+        $cek = detail_ramodif::where('waktu',$date)->first();
         if($cek)
         {
             return back()->withStatus(__('Kuesioner hanya bisa diisi Satu kali per hari'));
@@ -62,10 +62,10 @@ class detail_instingController extends Controller
 
             foreach($data as $input){
 
-                DB::table('detail_insting')->insert([
+                DB::table('detail_ramodif')->insert([
                   'waktu'=>$date,
                   'jawaban'=>$input,
-                  'pertanyaan_insting_id'=>$no,
+                  'pertanyaan_ramodif_id'=>$no,
                   'anak_id'=>$idAnak,
 
                 ]);
@@ -87,16 +87,16 @@ class detail_instingController extends Controller
     {
         if(pasien::where('user_id','=',auth()->user()->id)->first())
         {
-            $detail_insting=insting::where('insting.jenis_edukasi_id', $idJenisEdukasi)
-            ->Join('pertanyaan_insting','insting.id','=',
-            'pertanyaan_insting.insting_id')
-            ->select('pertanyaan_insting.pertanyaan as pertanyaan',
-            'pertanyaan_insting.id as id')
+            $detail_ramodif=ramodif::where('ramodif.jenis_edukasi_id', $idJenisEdukasi)
+            ->Join('pertanyaan_ramodif','ramodif.id','=',
+            'pertanyaan_ramodif.ramodif_id')
+            ->select('pertanyaan_ramodif.pertanyaan as pertanyaan',
+            'pertanyaan_ramodif.id as id')
             ->get();
-            $video=insting::where('insting.jenis_edukasi_id', $idJenisEdukasi)
-            ->select('insting.video as video','insting.id as id')->first();
+            $video=ramodif::where('ramodif.jenis_edukasi_id', $idJenisEdukasi)
+            ->select('ramodif.video as video','ramodif.id as id')->first();
            // dd($idAnak);
-            return view('pages.kuesioner_insting',['detail_insting'=>$detail_insting,
+            return view('pages.kuesioner_ramodif',['detail_ramodif'=>$detail_ramodif,
             'video'=>$video,'id_anak'=>$idAnak]);
         }
         else

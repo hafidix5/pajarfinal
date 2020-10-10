@@ -72,6 +72,21 @@ class jenisEdukasiController extends Controller
        // dd($jenisEdukasi);
         return view('pages.pilihjenisEdukasi',['jenisEdukasi'=>$jenisEdukasi]);
     }
+    public function showDeteks()
+    {
+        $jenisEdukasi=DB::table('jenis_edukasi')->get();
+       // dd($jenisEdukasi);
+        return view('pages.pilihjenisEdukasiDeteks',['jenisEdukasi'=>$jenisEdukasi]);
+    }
+    public function showRamodif()
+    {
+        $jenisEdukasi=DB::table('jenis_edukasi')->get();
+       // dd($jenisEdukasi);
+        return view('pages.pilihjenisEdukasiRamodif',['jenisEdukasi'=>$jenisEdukasi]);
+    }
+
+
+
 
     /**
      * Show the form for editing the specified resource.

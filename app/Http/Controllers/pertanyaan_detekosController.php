@@ -46,9 +46,21 @@ class pertanyaan_detekosController extends Controller
         $this->validate($request,[
     		'pertanyaan' => 'required',
             'detekos_id' => 'required'
-    	]);
+        ]);
+
+        $no_deteks=pertanyaan_detekos::where('detekos_id', $request->detekos_id)->count();
+        if($no_deteks==null)
+        {
+            $no_deteks=1;
+        }
+        else
+        {
+            $no_deteks++;
+        }
+
 
         pertanyaan_detekos::create([
+            'id'=>$no_deteks,
             'pertanyaan' => $request->pertanyaan,
             'detekos_id' => $request->detekos_id
         ]);

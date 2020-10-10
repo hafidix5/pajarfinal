@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class pertanyaan_detekos extends Model
 {
     protected $table='pertanyaan_detekos';
+    protected $primaryKey='id';
     protected $fillable = [
-        'pertanyaan','detekos_id'
+        'id','pertanyaan','detekos_id'
     ];
     public function detekos_jawaban(){
         return $this->hasMany('App\pertanyaan_detekos');

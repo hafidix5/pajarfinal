@@ -104,8 +104,22 @@ Route::get('riwayatdetail/{tanggal}/DetailKuesioner/{id}', 'jawaban_kuesionerCon
     Route::put('pertanyaan_ramodif.update/{id}/{id2}', ['as' => 'pertanyaan_ramodif.update', 'uses' => 'pertanyaan_ramodifController@update']);
     Route::get('pertanyaan_ramodif.hapus/{id}', ['as' => 'pertanyaan_ramodif.hapus', 'uses' => 'pertanyaan_ramodifController@destroy']);
 
+    Route::get('pilihEdukasi', 'jenisEdukasiController@show')->name('pilihEdukasi');
+    Route::get('pilihAnak/{id}', 'AnakController@show')->name('pilihAnak');
     Route::get('kuesioner_insting/{idAnak}/{idJenisEdukasi})', 'detail_instingController@show')->name('kuesioner_insting');
-    Route::post('kuesioner_instingSave)', 'detail_instingController@store')->name('kuesioner_instingSave');
+    Route::post('kuesioner_instingSave/{idAnak}/{idinsting})', 'detail_instingController@store')->name('kuesioner_instingSave');
+
+    Route::get('pilihEdukasiDeteks', 'jenisEdukasiController@showDeteks')->name('pilihEdukasiDeteks');
+    Route::get('pilihAnakDeteks/{id}', 'AnakController@showDeteks')->name('pilihAnakDeteks');
+    Route::get('kuesioner_detekos/{idAnak}/{idJenisEdukasi})', 'detail_detekosController@show')->name('kuesioner_detekos');
+    Route::post('kuesioner_detekosSave/{idAnak}/{iddetekos})', 'detail_detekosController@store')->name('kuesioner_detekosSave');
+
+    Route::get('pilihEdukasiRamodif', 'jenisEdukasiController@showRamodif')->name('pilihEdukasiRamodif');
+    Route::get('pilihAnakRamodif/{id}', 'AnakController@showRamodif')->name('pilihAnakRamodif');
+    Route::get('kuesioner_ramodif/{idAnak}/{idJenisEdukasi})', 'detail_ramodifController@show')->name('kuesioner_ramodif');
+    Route::post('kuesioner_ramodifSave/{idAnak}/{idramodif})', 'detail_ramodifController@store')->name('kuesioner_ramodifSave');
+
+
 
     Route::get('icons', function () {
 		return view('pages.icons');
