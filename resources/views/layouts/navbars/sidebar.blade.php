@@ -35,7 +35,7 @@
                 <a  href="{{ route('pilihEdukasi') }}">Lihat</a>
             </li>
             <li class="nav-link">
-              <a  href="{{ route('pilihEdukasi') }}">Hasil</a>
+              <a  href="{{ route('pilihEdukasiHasilInsting') }}">Hasil</a>
             </li>
         </ul>
       </li>
@@ -50,7 +50,18 @@
                 <a  href="{{ route('pilihEdukasiDeteks') }}">Lihat</a>
             </li>
             <li class="nav-link">
-              <a  href="{{ route('pilihEdukasiDeteks') }}">Hasil</a>
+              <a  href="{{ route('pilihEdukasiHasilDetekos') }}">Hasil</a>
+            </li>
+        </ul>
+      </li>
+      <li class="nav-item{{ $activePage ?? '' }}">
+        <a href="#testimoniSubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link">
+             <i class="material-icons">assignment_turned_in</i>
+             TESTIMONI DETEKS
+            </a>
+        <ul class="collapse list-unstyled" id="testimoniSubmenu">
+            <li class="nav-link">
+                <a  href="{{ route('testimoniDeteks') }}">Lihat</a>
             </li>
         </ul>
       </li>
@@ -64,7 +75,7 @@
                 <a  href="{{ route('pilihEdukasiRamodif') }}">Lihat</a>
             </li>
             <li class="nav-link">
-              <a  href="{{ route('pilihEdukasiRamodif') }}">Hasil</a>
+              <a  href="{{ route('pilihEdukasiHasilRamodif') }}">Hasil</a>
             </li>
         </ul>
       </li>

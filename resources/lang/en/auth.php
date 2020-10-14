@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Email ini tidak terdaftar.',
+    'failed' => 'Nomor HP ini tidak terdaftar.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

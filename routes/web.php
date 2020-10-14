@@ -119,7 +119,24 @@ Route::get('riwayatdetail/{tanggal}/DetailKuesioner/{id}', 'jawaban_kuesionerCon
     Route::get('kuesioner_ramodif/{idAnak}/{idJenisEdukasi})', 'detail_ramodifController@show')->name('kuesioner_ramodif');
     Route::post('kuesioner_ramodifSave/{idAnak}/{idramodif})', 'detail_ramodifController@store')->name('kuesioner_ramodifSave');
 
+    Route::get('pilihEdukasiHasilInsting', 'jenisEdukasiController@showHasilInsting')->name('pilihEdukasiHasilInsting');
+    Route::get('pilihAnakHasilInsting/{id}', 'AnakController@showHasilInsting')->name('pilihAnakHasilInsting');
+    Route::get('hasil_kuesioner_insting/{idAnak}/{idJenisEdukasi})', 'detail_instingController@showHasilInsting')->name('hasil_kuesioner_insting');
 
+    Route::get('pilihEdukasiHasilDetekos', 'jenisEdukasiController@showHasilDetekos')->name('pilihEdukasiHasilDetekos');
+    Route::get('pilihAnakHasilDetekos/{id}', 'AnakController@showHasilDetekos')->name('pilihAnakHasilDetekos');
+    Route::get('hasil_kuesioner_detekos/{idAnak}/{idJenisEdukasi})', 'detail_detekosController@showHasilDetekos')->name('hasil_kuesioner_detekos');
+
+    Route::get('pilihEdukasiHasilRamodif', 'jenisEdukasiController@showHasilRamodif')->name('pilihEdukasiHasilRamodif');
+    Route::get('pilihAnakHasilRamodif/{id}', 'AnakController@showHasilRamodif')->name('pilihAnakHasilRamodif');
+    Route::get('hasil_kuesioner_Ramodif/{idAnak}/{idJenisEdukasi})', 'detail_ramodifController@showHasilRamodif')->name('hasil_kuesioner_ramodif');
+
+    Route::get('pilihEdukasiHasilInstingAdmin', 'jenisEdukasiController@showHasilInstingAdmin')->name('pilihEdukasiHasilInstingAdmin');
+    Route::get('pilihAnakHasilInstingAdmin/{id}', 'AnakController@showHasilInstingAdmin')->name('pilihAnakHasilInstingAdmin');
+    Route::get('hasil_kuesioner_insting/{idAnak}/{idJenisEdukasi})', 'detail_instingController@showHasilInstingAdmin')->name('hasil_kuesioner_insting');
+
+
+    Route::get('testimoniDeteks', 'testimoniController@show')->name('testimoniDeteks');
 
     Route::get('icons', function () {
 		return view('pages.icons');

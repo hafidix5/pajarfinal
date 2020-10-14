@@ -17,6 +17,7 @@ class PertanyaanRamodif extends Migration
             $table->id();
             $table->string('pertanyaan');
             $table->BigInteger('ramodif_id')->unsigned();
+            $table->String('tahap');
             $table->timestamps();
         });
         Schema::table('pertanyaan_ramodif', function (Blueprint $table){

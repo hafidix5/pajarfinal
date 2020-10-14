@@ -17,7 +17,9 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <i class="material-icons">close</i>
               </button>
-              <span>{{ session('status') }}</span>
+              <span><h4>{{ session('status') }}<h4>
+
+            </span>
             </div>
           </div>
         </div>

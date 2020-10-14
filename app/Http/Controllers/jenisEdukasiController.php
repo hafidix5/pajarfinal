@@ -85,6 +85,25 @@ class jenisEdukasiController extends Controller
         return view('pages.pilihjenisEdukasiRamodif',['jenisEdukasi'=>$jenisEdukasi]);
     }
 
+    public function showHasilInsting()
+    {
+        $jenisEdukasi=DB::table('jenis_edukasi')->get();
+       // dd($jenisEdukasi);
+        return view('pages.pilihjenisEdukasiHasilInsting',['jenisEdukasi'=>$jenisEdukasi]);
+    }
+    public function showHasilDetekos()
+    {
+        $jenisEdukasi=DB::table('jenis_edukasi')->get();
+       // dd($jenisEdukasi);
+        return view('pages.pilihjenisEdukasiHasilDetekos',['jenisEdukasi'=>$jenisEdukasi]);
+    }
+    public function showHasilRamodif()
+    {
+        $jenisEdukasi=DB::table('jenis_edukasi')->get();
+       // dd($jenisEdukasi);
+        return view('pages.pilihjenisEdukasiHasilRamodif',['jenisEdukasi'=>$jenisEdukasi]);
+    }
+
 
 
 

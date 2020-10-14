@@ -38,6 +38,20 @@
                   </div>
                 </div>
                 <div class="row">
+                    <label class="col-sm-2 col-form-label">{{ __('Tahap Ramodif') }}</label>
+                    <div class="col-sm-7">
+                      <div class="form-group{{ $errors->has('tahap') ? ' has-danger' : '' }}">
+                        <select class="form-control" name="tahap" id="tahap">
+                            <option value="1.responding">Responding</option>
+                          <option value="2.preventing">Preventing</option>
+                          <option value="3.monitoring">Monitoring</option>
+                          <option value="4.mentoring">Mentoring</option>
+                          <option value="5.modeling">Modeling</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                <div class="row">
                     <div class="col-sm-7">
                       <div class="form-group{{ $errors->has('ramodif') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('ramodif') ? ' is-invalid' : '' }}" name="ramodif_id" id="input-ramodif" type="hidden" value="{{$ramodif_id}}" required="true" aria-required="true"/>

@@ -43,6 +43,7 @@ class detail_detekosController extends Controller
 
         $date=Carbon::now();
         $date=$date->toDateString();
+        $jumlahpertanyaan=pertanyaan_detekos::where('detekos_id', $iddetekos)->count();
        // $no=pertanyaan_detekos::where('detekos_id', $iddetekos)->min();
         $nomor=pertanyaan_detekos::where('detekos_id', $iddetekos)
         ->select('id')
@@ -72,7 +73,21 @@ class detail_detekosController extends Controller
                 $no++;
 
             }
-            return back()->withStatus(__('jawaban Kuesioner berhasil disimpan'));
+            $rendah=0.33*$jumlahpertanyaan;
+            $normal=0.67*$jumlahpertanyaan;
+            $tinggi=1*$jumlahpertanyaan;
+            $skor=DB::selectOne('
+                        SELECT (case when SUM(dd.jawaban)<='.$rendah.' then "Resiko Rendah"
+                                    when SUM(dd.jawaban)<='.$normal.' then "Normal"
+                                    when SUM(dd.jawaban)<='.$tinggi.' then "Resiko Tinggi"
+                            END)
+                            AS skor FROM detail_detekos AS dd JOIN pertanyaan_detekos AS pd ON
+                            dd.pertanyaan_detekos_id=pd.id JOIN detekos AS d ON pd.detekos_id=d.id JOIN anak AS a ON
+                             dd.anak_id=a.id WHERE d.id='.$iddetekos.' AND a.id='.$idAnak.' AND dd.waktu="'.$date.'" limit 1
+        ');
+
+        return back()->withStatus(__('Hasil :'.$skor->skor));
+          //  return back()->withStatus(__('jawaban Kuesioner berhasil disimpan'));
 
         }
     }
@@ -105,6 +120,35 @@ class detail_detekosController extends Controller
             return redirect()->route('dataDiri')->withStatus(__('Anda harus mengisi Data Diri terlebih dahulu'));
         }
     }
+
+    public function showHasilDetekos($idAnak,$idJenisEdukasi)
+    {
+        $id_detekos=DB::SelectOne('
+        SELECT i.id AS id_detekos FROM jenis_edukasi AS je JOIN detekos AS i ON je.id=i.jenis_edukasi_id
+WHERE je.id='.$idJenisEdukasi.'
+        ');
+        $jumlahpertanyaan=pertanyaan_detekos::where('detekos_id', $id_detekos->id_detekos)->count();
+
+        $rendah=0.33*$jumlahpertanyaan;
+        $normal=0.67*$jumlahpertanyaan;
+        $tinggi=1*$jumlahpertanyaan;
+
+        $hasildetekos=DB::select('
+        SELECT a.nama AS nama,di.waktu AS waktu,i.nama as detekos,
+         (case when SUM(di.jawaban)<='.$rendah.' then "Resiko Rendah"
+                                    when SUM(di.jawaban)<='.$normal.' then "Normal"
+                                    when SUM(di.jawaban)<='.$tinggi.' then "Resiko Tinggi"
+                            END)
+        AS skor FROM detail_detekos AS di left JOIN pertanyaan_detekos AS pei ON
+        di.pertanyaan_detekos_id=pei.id JOIN detekos AS i ON pei.detekos_id=i.id JOIN anak AS a ON
+        di.anak_id=a.id WHERE i.id='.$id_detekos->id_detekos.' AND a.id='.$idAnak.' GROUP BY di.waktu Order by di.waktu desc
+
+    ');
+          //  dd($hasildetekos);
+             return view('pages.hasildetekos',['hasildetekos'=>$hasildetekos]);
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

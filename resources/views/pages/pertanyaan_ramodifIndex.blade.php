@@ -30,6 +30,9 @@
                       <th>
                         Pertanyaan
                       </th>
+                      <th>
+                        Tahap
+                      </th>
 
                     <th>
                         Aksi
@@ -42,7 +45,7 @@
                         <tr>
                             <td>{{ $i }}</td>
                             <td>{{ $pertanyaan_ramodif->pertanyaan }}</td>
-
+                            <td>{{ $pertanyaan_ramodif->tahap }}</td>
                             <td>
                                 <a class="nav-link" href="{{ route('pertanyaan_ramodif.edit',$pertanyaan_ramodif->id) }}">
                                     <i class="material-icons">edit</i> Edit

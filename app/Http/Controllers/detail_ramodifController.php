@@ -72,9 +72,77 @@ class detail_ramodifController extends Controller
                 $no++;
 
             }
-            return back()->withStatus(__('jawaban Kuesioner berhasil disimpan'));
+
+        $skorResponding=DB::selectOne('
+            SELECT if(SUM(dr.jawaban)>0,"1","0") AS skor
+            FROM detail_ramodif AS dr
+            JOIN pertanyaan_ramodif AS pr ON dr.pertanyaan_ramodif_id=pr.id JOIN
+            ramodif AS r ON pr.ramodif_id=r.id JOIN anak AS a ON dr.anak_id=a.id WHERE
+            r.id='.$idramodif.' AND a.id='.$idAnak.' AND dr.waktu="'.$date.'" AND pr.tahap="1.responding" limit 1
+        ');
+        $skorPreventing=DB::selectOne('
+            SELECT if(SUM(dr.jawaban)>0,"1","0") AS skor
+            FROM detail_ramodif AS dr
+            JOIN pertanyaan_ramodif AS pr ON dr.pertanyaan_ramodif_id=pr.id JOIN
+            ramodif AS r ON pr.ramodif_id=r.id JOIN anak AS a ON dr.anak_id=a.id WHERE
+            r.id='.$idramodif.' AND a.id='.$idAnak.' AND dr.waktu="'.$date.'" AND pr.tahap="2.preventing" limit 1
+        ');
+        $skorMonitoring=DB::selectOne('
+            SELECT if(SUM(dr.jawaban)>0,"1","0") AS skor
+            FROM detail_ramodif AS dr
+            JOIN pertanyaan_ramodif AS pr ON dr.pertanyaan_ramodif_id=pr.id JOIN
+            ramodif AS r ON pr.ramodif_id=r.id JOIN anak AS a ON dr.anak_id=a.id WHERE
+            r.id='.$idramodif.' AND a.id='.$idAnak.' AND dr.waktu="'.$date.'" AND pr.tahap="3.monitoring" limit 1
+        ');
+        $skorMentoring=DB::selectOne('
+            SELECT if(SUM(dr.jawaban)>0,"1","0") AS skor
+            FROM detail_ramodif AS dr
+            JOIN pertanyaan_ramodif AS pr ON dr.pertanyaan_ramodif_id=pr.id JOIN
+            ramodif AS r ON pr.ramodif_id=r.id JOIN anak AS a ON dr.anak_id=a.id WHERE
+            r.id='.$idramodif.' AND a.id='.$idAnak.' AND dr.waktu="'.$date.'" AND pr.tahap="4.mentoring" limit 1
+        ');
+        $skorModeling=DB::selectOne('
+            SELECT if(SUM(dr.jawaban)>0,"1","0") AS skor
+            FROM detail_ramodif AS dr
+            JOIN pertanyaan_ramodif AS pr ON dr.pertanyaan_ramodif_id=pr.id JOIN
+            ramodif AS r ON pr.ramodif_id=r.id JOIN anak AS a ON dr.anak_id=a.id WHERE
+            r.id='.$idramodif.' AND a.id='.$idAnak.' AND dr.waktu="'.$date.'" AND pr.tahap="5.modeling" limit 1
+        ');
+        $totalskor=$skorResponding->skor+$skorMentoring->skor+
+        $skorModeling->skor+$skorMonitoring->skor+$skorPreventing->skor;
+        if($totalskor<=3)
+        {
+            $hasil="Kurang Mampu";
+        }
+        else
+        {
+            $hasil="Mampu";
+        }
+        //dd($skor);
+        return back()->withStatus(__('Hasil : '.$hasil));
 
         }
+    }
+
+    public function showHasilRamodif($idAnak,$idJenisEdukasi)
+    {
+        $id_ramodif=DB::SelectOne('
+        SELECT i.id AS id_ramodif FROM jenis_edukasi AS je JOIN ramodif AS i ON je.id=i.jenis_edukasi_id
+WHERE je.id='.$idJenisEdukasi.'
+        ');
+
+        $hasilramodif=DB::select('
+        SELECT if(sum(skor)<=3,"Kurang Mampu","Mampu") AS skor,waktu,nama,namaramodif FROM (
+            SELECT if(SUM(dr.jawaban)>0,"1","0") AS skor, dr.waktu AS waktu, a.nama AS nama,r.nama AS namaramodif
+                       FROM detail_ramodif AS dr
+                       JOIN pertanyaan_ramodif AS pr ON dr.pertanyaan_ramodif_id=pr.id JOIN
+                       ramodif AS r ON pr.ramodif_id=r.id JOIN anak AS a ON dr.anak_id=a.id WHERE
+                       r.id='.$id_ramodif->id_ramodif.' AND a.id='.$idAnak.' GROUP BY dr.waktu,pr.tahap ORDER BY dr.waktu DESC) AS DATA GROUP BY waktu
+
+    ');
+          //  dd($hasilramodif);
+             return view('pages.hasilRamodif',['hasilramodif'=>$hasilramodif]);
+
     }
 
     /**
@@ -91,8 +159,11 @@ class detail_ramodifController extends Controller
             ->Join('pertanyaan_ramodif','ramodif.id','=',
             'pertanyaan_ramodif.ramodif_id')
             ->select('pertanyaan_ramodif.pertanyaan as pertanyaan',
-            'pertanyaan_ramodif.id as id')
+            'pertanyaan_ramodif.id as id','pertanyaan_ramodif.tahap as tahap')
+            ->OrderBy('tahap','ASC')
             ->get();
+
+
             $video=ramodif::where('ramodif.jenis_edukasi_id', $idJenisEdukasi)
             ->select('ramodif.video as video','ramodif.id as id')->first();
            // dd($idAnak);

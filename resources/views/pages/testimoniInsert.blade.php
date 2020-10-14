@@ -49,7 +49,7 @@
                     </div>
                   </div>
                   <div class="row">
-                    <label class="col-sm-2 col-form-label">{{ __('Jenis Edukasi') }}</label>
+                    <label class="col-sm-2 col-form-label">{{ __('Nama Deteks') }}</label>
                     <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('detekos_id') ? ' has-danger' : '' }}">
                     <select class="form-control" class="form-control" name="detekos_id" id="detekos_id">

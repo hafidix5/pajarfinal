@@ -111,6 +111,42 @@ class anakController extends Controller
        // dd($anak);
     }
 
+    public function showHasilInsting($id)
+    {
+        $id_user=auth()->user()->id;
+        $anak=pasien::where('pasien.user_id', $id_user)
+        ->Join('anak','anak.pasien_id','=','pasien.id')
+        ->select('anak.nama as nama','anak.id as id')->get();
+        $id_jenisEdukasi=$id;
+
+        return view('pages.pilihAnakHasilInsting',['anak'=>$anak,'id_jenisEdukasi'=>$id_jenisEdukasi]);
+       // dd($anak);
+    }
+
+    public function showHasilDetekos($id)
+    {
+        $id_user=auth()->user()->id;
+        $anak=pasien::where('pasien.user_id', $id_user)
+        ->Join('anak','anak.pasien_id','=','pasien.id')
+        ->select('anak.nama as nama','anak.id as id')->get();
+        $id_jenisEdukasi=$id;
+
+        return view('pages.pilihAnakHasilDetekos',['anak'=>$anak,'id_jenisEdukasi'=>$id_jenisEdukasi]);
+       // dd($anak);
+    }
+
+    public function showHasilRamodif($id)
+    {
+        $id_user=auth()->user()->id;
+        $anak=pasien::where('pasien.user_id', $id_user)
+        ->Join('anak','anak.pasien_id','=','pasien.id')
+        ->select('anak.nama as nama','anak.id as id')->get();
+        $id_jenisEdukasi=$id;
+
+        return view('pages.pilihAnakHasilRamodif',['anak'=>$anak,'id_jenisEdukasi'=>$id_jenisEdukasi]);
+       // dd($anak);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

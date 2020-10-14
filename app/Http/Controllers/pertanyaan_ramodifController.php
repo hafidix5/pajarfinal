@@ -46,7 +46,8 @@ class pertanyaan_ramodifController extends Controller
     {
         $this->validate($request,[
     		'pertanyaan' => 'required',
-            'ramodif_id' => 'required'
+            'ramodif_id' => 'required',
+            'tahap'=>'required'
     	]);
 
         $no_ramodif=pertanyaan_ramodif::where('ramodif_id', $request->ramodif_id)->count();
@@ -61,7 +62,8 @@ class pertanyaan_ramodifController extends Controller
         pertanyaan_ramodif::create([
             'id'=>$no_ramodif,
             'pertanyaan' => $request->pertanyaan,
-            'ramodif_id' => $request->ramodif_id
+            'ramodif_id' => $request->ramodif_id,
+            'tahap'=>$request->tahap
         ]);
         $ramodif=ramodif::where('id','=',$request->ramodif_id)->select('ramodif.nama as nama','ramodif.id as id')->first();
        // dd($request->ramodif_id);
@@ -80,7 +82,8 @@ class pertanyaan_ramodifController extends Controller
         $pertanyaan_ramodif=pertanyaan_ramodif::where('pertanyaan_ramodif.ramodif_id', $id)
         ->Join('ramodif','pertanyaan_ramodif.ramodif_id','=','ramodif.id')
         ->select('pertanyaan_ramodif.pertanyaan as pertanyaan','ramodif.nama as nama',
-        'pertanyaan_ramodif.id as id')->get();
+        'pertanyaan_ramodif.id as id','pertanyaan_ramodif.tahap as tahap')
+        ->OrderBy('tahap', 'ASC')->get();
         $ramodif=ramodif::where('id','=',$id)->select('ramodif.nama as nama','ramodif.id as id')->first();
         return view('pages.pertanyaan_ramodifIndex',['pertanyaan_ramodif'=>$pertanyaan_ramodif,
         'ramodif'=>$ramodif]);
@@ -110,11 +113,13 @@ class pertanyaan_ramodifController extends Controller
     public function update(Request $request, $id, $ramodif_id)
     {
         $this->validate($request,[
-    		'pertanyaan' => 'required'
+            'pertanyaan' => 'required',
+            'tahap'=>'required'
     	]);
 
          $pertanyaan_ramodif = pertanyaan_ramodif::find($id);
          $pertanyaan_ramodif->pertanyaan = $request->pertanyaan;
+         $pertanyaan_ramodif->tahap = $request->tahap;
          $pertanyaan_ramodif->save();
 
        // $ramodif=ramodif::where('id','=',$ramodif_id)->select('ramodif.nama as nama','ramodif.id as id')->first();
@@ -122,7 +127,8 @@ class pertanyaan_ramodifController extends Controller
          $pertanyaan_ramodif=pertanyaan_ramodif::where('pertanyaan_ramodif.ramodif_id', $ramodif_id)
         ->Join('ramodif','pertanyaan_ramodif.ramodif_id','=','ramodif.id')
         ->select('pertanyaan_ramodif.pertanyaan as pertanyaan','ramodif.nama as nama',
-        'pertanyaan_ramodif.id as id')->get();
+        'pertanyaan_ramodif.id as id','pertanyaan_ramodif.tahap as tahap')
+        ->OrderBy('tahap','ASC')->get();
         $ramodif=ramodif::where('id','=',$ramodif_id)->select('ramodif.nama as nama','ramodif.id as id')->first();
         return view('pages.pertanyaan_ramodifIndex',['pertanyaan_ramodif'=>$pertanyaan_ramodif,
         'ramodif'=>$ramodif]);

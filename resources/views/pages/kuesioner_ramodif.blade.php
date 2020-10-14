@@ -17,7 +17,7 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <i class="material-icons">close</i>
               </button>
-              <span>{{ session('status') }}</span>
+              <span><h4>{{ session('status') }}<h4></span>
             </div>
           </div>
         </div>
@@ -36,6 +36,9 @@
                 Pertanyaan
               </th>
               <th>
+                Tahap
+              </th>
+              <th>
                 Jawaban&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;
               </th>
 
@@ -49,6 +52,7 @@
                 <tr>
                     <td>{{ $i }}</td>
                     <td>{{ $detail_ramodif->pertanyaan }}</td>
+                    <td>{{ $detail_ramodif->tahap }}</td>
                     <td class="text-left">
                         <span><input type="radio" id={{ $detail_ramodif->id }} name={{ 'pertanyaan'.$detail_ramodif->id }} value="1" required/> Sudah</span><br>
                         <span><input type="radio" id={{ $detail_ramodif->id }} name={{ 'pertanyaan'.$detail_ramodif->id }} value="0"/> Belum</span><br/>
