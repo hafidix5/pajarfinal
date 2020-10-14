@@ -132,8 +132,16 @@ Route::get('riwayatdetail/{tanggal}/DetailKuesioner/{id}', 'jawaban_kuesionerCon
     Route::get('hasil_kuesioner_Ramodif/{idAnak}/{idJenisEdukasi})', 'detail_ramodifController@showHasilRamodif')->name('hasil_kuesioner_ramodif');
 
     Route::get('pilihEdukasiHasilInstingAdmin', 'jenisEdukasiController@showHasilInstingAdmin')->name('pilihEdukasiHasilInstingAdmin');
-    Route::get('pilihAnakHasilInstingAdmin/{id}', 'AnakController@showHasilInstingAdmin')->name('pilihAnakHasilInstingAdmin');
-    Route::get('hasil_kuesioner_insting/{idAnak}/{idJenisEdukasi})', 'detail_instingController@showHasilInstingAdmin')->name('hasil_kuesioner_insting');
+    Route::get('daftarHasilInstingAdmin/{id}', 'AnakController@showdaftarHasilInstingAdmin')->name('daftarHasilInstingAdmin');
+    Route::get('hasil_kuesioner_instingAdmin/{idAnak}/{idJenisEdukasi})', 'detail_instingController@showHasilInstingAdmin')->name('hasil_kuesioner_instingAdmin');
+
+    Route::get('pilihEdukasiHasilDetekosAdmin', 'jenisEdukasiController@showHasilDetekosAdmin')->name('pilihEdukasiHasilDetekosAdmin');
+    Route::get('daftarHasilDetekosAdmin/{id}', 'AnakController@showdaftarHasilDetekosAdmin')->name('daftarHasilDetekosAdmin');
+    Route::get('hasil_kuesioner_DetekosAdmin/{idAnak}/{idJenisEdukasi})', 'detail_instingController@showHasilDetekosAdmin')->name('hasil_kuesioner_detekosAdmin');
+
+    Route::get('pilihEdukasiHasilRamodifAdmin', 'jenisEdukasiController@showHasilRamodifAdmin')->name('pilihEdukasiHasilRamodifAdmin');
+    Route::get('daftarHasilRamodifAdmin/{id}', 'AnakController@showdaftarHasilRamodifAdmin')->name('daftarHasilRamodifAdmin');
+    Route::get('hasil_kuesioner_RamodifAdmin/{idAnak}/{idJenisEdukasi})', 'detail_instingController@showHasilRamodifAdmin')->name('hasil_kuesioner_ramodifAdmin');
 
 
     Route::get('testimoniDeteks', 'testimoniController@show')->name('testimoniDeteks');

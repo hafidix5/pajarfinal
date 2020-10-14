@@ -147,6 +147,62 @@ class anakController extends Controller
        // dd($anak);
     }
 
+    public function showdaftarHasilInstingAdmin($id)
+    {
+        $id_user=auth()->user()->id;
+        $daftarhasil=DB::select('
+        SELECT a.nama AS namaAnak,pa.nama AS namaOrtu, p.nama AS namaPuskesmas,a.id AS id
+ FROM puskesmas AS p JOIN pasien AS pa ON p.id=pa.puskesmas_id JOIN anak AS a ON pa.id=a.pasien_id
+JOIN detail_insting AS di ON a.id=di.anak_id JOIN pertanyaan_insting AS pei ON di.pertanyaan_insting_id=
+pei.id JOIN insting AS i ON pei.insting_id=i.id WHERE i.jenis_edukasi_id='.$id.'
+ group by a.nama,pa.nama,p.nama,a.id ORDER BY
+a.nama asc
+
+    ');
+
+        $id_jenisEdukasi=$id;
+
+        return view('pages.daftarHasilInstingAdmin',['daftarhasil'=>$daftarhasil,'id_jenisEdukasi'=>$id_jenisEdukasi]);
+       // dd($anak);
+    }
+
+    public function showdaftarHasilDetekosAdmin($id)
+    {
+        $id_user=auth()->user()->id;
+        $daftarhasil=DB::select('
+        SELECT a.nama AS namaAnak,pa.nama AS namaOrtu, p.nama AS namaPuskesmas,a.id AS id
+ FROM puskesmas AS p JOIN pasien AS pa ON p.id=pa.puskesmas_id JOIN anak AS a ON pa.id=a.pasien_id
+JOIN detail_detekos AS di ON a.id=di.anak_id JOIN pertanyaan_detekos AS pei ON di.pertanyaan_detekos_id=
+pei.id JOIN detekos AS i ON pei.detekos_id=i.id WHERE i.jenis_edukasi_id='.$id.'
+ group by a.nama,pa.nama,p.nama,a.id ORDER BY
+a.nama asc
+
+    ');
+
+        $id_jenisEdukasi=$id;
+
+        return view('pages.daftarHasilDetekosAdmin',['daftarhasil'=>$daftarhasil,'id_jenisEdukasi'=>$id_jenisEdukasi]);
+       // dd($anak);
+    }
+    public function showdaftarHasilRamodifAdmin($id)
+    {
+        $id_user=auth()->user()->id;
+        $daftarhasil=DB::select('
+        SELECT a.nama AS namaAnak,pa.nama AS namaOrtu, p.nama AS namaPuskesmas,a.id AS id
+ FROM puskesmas AS p JOIN pasien AS pa ON p.id=pa.puskesmas_id JOIN anak AS a ON pa.id=a.pasien_id
+JOIN detail_ramodif AS di ON a.id=di.anak_id JOIN pertanyaan_ramodif AS pei ON di.pertanyaan_ramodif_id=
+pei.id JOIN ramodif AS i ON pei.ramodif_id=i.id WHERE i.jenis_edukasi_id='.$id.'
+ group by a.nama,pa.nama,p.nama,a.id ORDER BY
+a.nama asc
+
+    ');
+
+        $id_jenisEdukasi=$id;
+
+        return view('pages.daftarHasilRamodifAdmin',['daftarhasil'=>$daftarhasil,'id_jenisEdukasi'=>$id_jenisEdukasi]);
+       // dd($anak);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

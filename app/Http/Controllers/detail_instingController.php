@@ -145,6 +145,72 @@ WHERE je.id='.$idJenisEdukasi.'
 
     }
 
+    public function showHasilInstingAdmin($idAnak,$idJenisEdukasi)
+    {
+        $id_insting=DB::SelectOne('
+        SELECT i.id AS id_insting FROM jenis_edukasi AS je JOIN insting AS i ON je.id=i.jenis_edukasi_id
+WHERE je.id='.$idJenisEdukasi.'
+        ');
+        $jumlahpertanyaan=pertanyaan_insting::where('insting_id', $id_insting->id_insting)->count();
+
+        $rendah=0.5*$jumlahpertanyaan;
+        $tinggi=1*$jumlahpertanyaan;
+
+        $hasilInsting=DB::select('
+        SELECT di.waktu AS waktu,a.nama AS namaAnak,pei.pertanyaan AS pertanyaan, di.jawaban AS jawaban
+ FROM anak AS a JOIN detail_insting AS di ON a.id=di.anak_id JOIN pertanyaan_insting AS pei
+ON di.pertanyaan_insting_id=pei.id JOIN insting AS i ON pei.insting_id=i.id
+WHERE a.id='.$idAnak.' AND i.jenis_edukasi_id='.$idJenisEdukasi.' ORDER BY di.waktu DESC, pei.id asc
+    ');
+          //  dd($hasilInsting);
+             return view('pages.hasilInstingAdmin',['hasilInsting'=>$hasilInsting]);
+
+    }
+
+    public function showHasilDetekosAdmin($idAnak,$idJenisEdukasi)
+    {
+        $id_insting=DB::SelectOne('
+        SELECT i.id AS id_insting FROM jenis_edukasi AS je JOIN insting AS i ON je.id=i.jenis_edukasi_id
+WHERE je.id='.$idJenisEdukasi.'
+        ');
+        $jumlahpertanyaan=pertanyaan_insting::where('insting_id', $id_insting->id_insting)->count();
+
+        $rendah=0.5*$jumlahpertanyaan;
+        $tinggi=1*$jumlahpertanyaan;
+
+        $hasilDetekos=DB::select('
+        SELECT di.waktu AS waktu,a.nama AS namaAnak,pei.pertanyaan AS pertanyaan, di.jawaban AS jawaban
+ FROM anak AS a JOIN detail_detekos AS di ON a.id=di.anak_id JOIN pertanyaan_detekos AS pei
+ON di.pertanyaan_detekos_id=pei.id JOIN detekos AS i ON pei.detekos_id=i.id
+WHERE a.id='.$idAnak.' AND i.jenis_edukasi_id='.$idJenisEdukasi.' ORDER BY di.waktu DESC, pei.id asc
+    ');
+          //  dd($hasildetekos);
+             return view('pages.hasilDetekosAdmin',['hasilDetekos'=>$hasilDetekos]);
+
+    }
+
+    public function showHasilRamodifAdmin($idAnak,$idJenisEdukasi)
+    {
+        $id_insting=DB::SelectOne('
+        SELECT i.id AS id_insting FROM jenis_edukasi AS je JOIN insting AS i ON je.id=i.jenis_edukasi_id
+WHERE je.id='.$idJenisEdukasi.'
+        ');
+        $jumlahpertanyaan=pertanyaan_insting::where('insting_id', $id_insting->id_insting)->count();
+
+        $rendah=0.5*$jumlahpertanyaan;
+        $tinggi=1*$jumlahpertanyaan;
+
+        $hasilRamodif=DB::select('
+        SELECT di.waktu AS waktu,a.nama AS namaAnak,pei.pertanyaan AS pertanyaan, di.jawaban AS jawaban,
+        pei.tahap as tahap
+ FROM anak AS a JOIN detail_Ramodif AS di ON a.id=di.anak_id JOIN pertanyaan_Ramodif AS pei
+ON di.pertanyaan_Ramodif_id=pei.id JOIN Ramodif AS i ON pei.Ramodif_id=i.id
+WHERE a.id='.$idAnak.' AND i.jenis_edukasi_id='.$idJenisEdukasi.' ORDER BY di.waktu DESC, pei.id asc
+    ');
+          //  dd($hasilRamodif);
+             return view('pages.hasilRamodifAdmin',['hasilRamodif'=>$hasilRamodif]);
+
+    }
     /**
      * Show the form for editing the specified resource.
      *

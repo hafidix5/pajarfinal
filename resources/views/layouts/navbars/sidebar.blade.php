@@ -109,7 +109,7 @@
                     <a  href="{{ route('insting') }}">Lihat</a>
                 </li>
                 <li class="nav-link">
-                  <a  href="{{ route('insting') }}">Hasil</a>
+                  <a  href="{{ route('pilihEdukasiHasilInstingAdmin') }}">Hasil</a>
                 </li>
             </ul>
           </li>
@@ -123,7 +123,7 @@
                     <a  href="{{ route('detekos') }}">Lihat</a>
                 </li>
                 <li class="nav-link">
-                  <a  href="{{ route('detekos') }}">Hasil</a>
+                  <a  href="{{ route('pilihEdukasiHasilDetekosAdmin') }}">Hasil</a>
                 </li>
             </ul>
           </li>
@@ -143,7 +143,7 @@
                     <a  href="{{ route('ramodif') }}">Lihat</a>
                 </li>
                 <li class="nav-link">
-                  <a  href="{{ route('ramodif') }}">Hasil</a>
+                  <a  href="{{ route('pilihEdukasiHasilRamodifAdmin') }}">Hasil</a>
                 </li>
             </ul>
           </li>
