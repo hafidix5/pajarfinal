@@ -145,6 +145,9 @@ Route::get('riwayatdetail/{tanggal}/DetailKuesioner/{id}', 'jawaban_kuesionerCon
 
 
     Route::get('testimoniDeteks', 'testimoniController@show')->name('testimoniDeteks');
+    Route::get('hasil_kuesioner_instingAdminExport/{idAnak}/{idJenisEdukasi})', 'detail_instingController@showHasilInstingAdminExport')->name('instingAdminExport');
+    Route::get('hasil_kuesioner_detekosAdminExport/{idAnak}/{idJenisEdukasi})', 'detail_detekosController@showHasilDetekosAdminExport')->name('detekosAdminExport');
+    Route::get('hasil_kuesioner_ramodifAdminExport/{idAnak}/{idJenisEdukasi})', 'detail_ramodifController@showHasilRamodifAdminExport')->name('ramodifAdminExport');
 
     Route::get('icons', function () {
 		return view('pages.icons');

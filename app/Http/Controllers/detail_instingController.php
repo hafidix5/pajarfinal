@@ -9,6 +9,10 @@ use App\insting;
 use App\detail_insting;
 use Carbon\Carbon;
 use App\pertanyaan_insting;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+use App\Exports\hasilInstingExport;
+use Session;
 
 class detail_instingController extends Controller
 {
@@ -162,9 +166,18 @@ WHERE je.id='.$idJenisEdukasi.'
 ON di.pertanyaan_insting_id=pei.id JOIN insting AS i ON pei.insting_id=i.id
 WHERE a.id='.$idAnak.' AND i.jenis_edukasi_id='.$idJenisEdukasi.' ORDER BY di.waktu DESC, pei.id asc
     ');
+    $idAnak=$idAnak;
+    $idJenisEdukasi=$idJenisEdukasi;
           //  dd($hasilInsting);
-             return view('pages.hasilInstingAdmin',['hasilInsting'=>$hasilInsting]);
+             return view('pages.hasilInstingAdmin',['hasilInsting'=>$hasilInsting,'idAnak'=>$idAnak,'idJenisEdukasi'=>$idJenisEdukasi]);
 
+    }
+    public function showHasilInstingAdminExport($idAnak,$idJenisEdukasi)
+    {
+       // dd($request->idJenisEdukasi);
+       Session()->put('idAnak', $idAnak);
+       Session()->put('idJenisEdukasi', $idJenisEdukasi);
+        return Excel::download(new hasilInstingExport, 'hasilkuesionerinsting.xlsx');
     }
 
     public function showHasilDetekosAdmin($idAnak,$idJenisEdukasi)
@@ -185,7 +198,7 @@ ON di.pertanyaan_detekos_id=pei.id JOIN detekos AS i ON pei.detekos_id=i.id
 WHERE a.id='.$idAnak.' AND i.jenis_edukasi_id='.$idJenisEdukasi.' ORDER BY di.waktu DESC, pei.id asc
     ');
           //  dd($hasildetekos);
-             return view('pages.hasilDetekosAdmin',['hasilDetekos'=>$hasilDetekos]);
+             return view('pages.hasilDetekosAdmin',['hasilDetekos'=>$hasilDetekos,'idAnak'=>$idAnak,'idJenisEdukasi'=>$idJenisEdukasi]);
 
     }
 
@@ -208,7 +221,7 @@ ON di.pertanyaan_Ramodif_id=pei.id JOIN Ramodif AS i ON pei.Ramodif_id=i.id
 WHERE a.id='.$idAnak.' AND i.jenis_edukasi_id='.$idJenisEdukasi.' ORDER BY di.waktu DESC, pei.id asc
     ');
           //  dd($hasilRamodif);
-             return view('pages.hasilRamodifAdmin',['hasilRamodif'=>$hasilRamodif]);
+             return view('pages.hasilRamodifAdmin',['hasilRamodif'=>$hasilRamodif,'idAnak'=>$idAnak,'idJenisEdukasi'=>$idJenisEdukasi]);
 
     }
     /**

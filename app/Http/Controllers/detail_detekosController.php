@@ -9,6 +9,10 @@ use App\detekos;
 use App\detail_detekos;
 use Carbon\Carbon;
 use App\pertanyaan_detekos;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+use App\Exports\hasilDetekosExport;
+use Session;
 
 class detail_detekosController extends Controller
 {
@@ -147,6 +151,13 @@ WHERE je.id='.$idJenisEdukasi.'
           //  dd($hasildetekos);
              return view('pages.hasildetekos',['hasildetekos'=>$hasildetekos]);
 
+    }
+    public function showHasilDetekosAdminExport($idAnak,$idJenisEdukasi)
+    {
+       // dd($request->idJenisEdukasi);
+       Session()->put('idAnak', $idAnak);
+       Session()->put('idJenisEdukasi', $idJenisEdukasi);
+        return Excel::download(new hasilDetekosExport, 'hasilkuesionerdetekos.xlsx');
     }
 
     /**

@@ -19,6 +19,7 @@
                   </div>
                 </div>
               @endif
+              <a  href="{{ route('detekosAdminExport',[$idAnak,$idJenisEdukasi]) }}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <thead class="">

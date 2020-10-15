@@ -9,6 +9,10 @@ use App\ramodif;
 use App\detail_ramodif;
 use Carbon\Carbon;
 use App\pertanyaan_ramodif;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+use App\Exports\hasilRamodifExport;
+use Session;
 
 class detail_ramodifController extends Controller
 {
@@ -143,6 +147,13 @@ WHERE je.id='.$idJenisEdukasi.'
           //  dd($hasilramodif);
              return view('pages.hasilRamodif',['hasilramodif'=>$hasilramodif]);
 
+    }
+    public function showHasilRamodifAdminExport($idAnak,$idJenisEdukasi)
+    {
+       // dd($request->idJenisEdukasi);
+       Session()->put('idAnak', $idAnak);
+       Session()->put('idJenisEdukasi', $idJenisEdukasi);
+        return Excel::download(new hasilRamodifExport, 'hasilkuesionerramodif.xlsx');
     }
 
     /**
