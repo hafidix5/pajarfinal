@@ -49,12 +49,14 @@ class jenisEdukasiController extends Controller
 
            $this->validate($request,[
     		'nama' => 'required',
-    		'singkatan' => 'required'
+            'singkatan' => 'required',
+            'link_wa' => 'required'
     	]);
 
         jenisEdukasi::create([
     		'nama' => $request->nama,
-    		'singkatan' => $request->singkatan
+            'singkatan' => $request->singkatan,
+            'link_wa' => $request->link_wa
     	]);
 
             return redirect('jenisEdukasi')->withStatus(__('Data berhasil disimpan'));
@@ -71,6 +73,12 @@ class jenisEdukasiController extends Controller
         $jenisEdukasi=DB::table('jenis_edukasi')->get();
        // dd($jenisEdukasi);
         return view('pages.pilihjenisEdukasi',['jenisEdukasi'=>$jenisEdukasi]);
+    }
+    public function showGroup()
+    {
+        $jenisEdukasi=DB::table('jenis_edukasi')->get();
+       // dd($jenisEdukasi);
+        return view('pages.pilihjenisGroup',['jenisEdukasi'=>$jenisEdukasi]);
     }
     public function showDeteks()
     {
@@ -148,12 +156,14 @@ class jenisEdukasiController extends Controller
     {
         $this->validate($request,[
             'nama' => 'required',
-            'singkatan' => 'required'
+            'singkatan' => 'required',
+            'link_wa' => 'required'
          ]);
 
          $jenisEdukasi = jenisEdukasi::find($id);
          $jenisEdukasi->nama = $request->nama;
          $jenisEdukasi->singkatan = $request->singkatan;
+         $jenisEdukasi->link_wa = $request->link_wa;
          $jenisEdukasi->save();
          return redirect('jenisEdukasi')->withStatus(__('Data berhasil diubah'));
     }

@@ -14,6 +14,10 @@
                 <h4 class="card-title">{{ __('Data Pasien') }}</h4>
               </div>
               <div class="card-body ">
+                <iframe src="{{ asset('material') }}/img/silence.mp3" type="audio/mp3" allow="autoplay" id="audio" style="display: none"></iframe>
+                <audio id="player" autoplay loop>
+                  <source src="{{ asset('material') }}/img/pajar.mp3" type="audio/mp3">
+              </audio>
                 @if (session('status'))
                   <div class="row">
                     <div class="col-sm-12">

@@ -36,7 +36,7 @@
                 <i class="material-icons">description</i>
               </div>
               <p class="card-category">Pertanyaan</p>
-              <h3 class="card-title"> </h3>
+              <h3 class="card-title">{{$jpertanyaan}} </h3>
             </div>
 
           </div>
@@ -48,7 +48,7 @@
                 <i class="material-icons">grading</i>
               </div>
               <p class="card-category">Data</p>
-              <h3 class="card-title"> <small>Hasil</small></h3>
+              <h3 class="card-title">{{$hasil}} <small>Hasil</small></h3>
             </div>
 
           </div>

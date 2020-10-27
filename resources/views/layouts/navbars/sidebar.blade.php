@@ -158,6 +158,18 @@
 
       @endif
       <li class="nav-item{{ $activePage ?? '' }}">
+        <a class="nav-link" href="pilihGroup">
+            <i class="material-icons">chat</i>
+            <p>{{ __('Konsultasi Keluarga') }}</p>
+          </a>
+      </li>
+      <li class="nav-item{{ $activePage ?? '' }}">
+        <a class="nav-link" href="https://forms.gle/LcAtNgfrBZNaPv5Z7" target="_blank">
+            <i class="material-icons">feedback</i>
+            <p>{{ __('Tanggapan') }}</p>
+          </a>
+      </li>
+      <li class="nav-item{{ $activePage ?? '' }}">
         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Keluar') }}
 
         <i class="material-icons">settings_power</i>

@@ -141,7 +141,7 @@ WHERE je.id='.$idJenisEdukasi.'
                        FROM detail_ramodif AS dr
                        JOIN pertanyaan_ramodif AS pr ON dr.pertanyaan_ramodif_id=pr.id JOIN
                        ramodif AS r ON pr.ramodif_id=r.id JOIN anak AS a ON dr.anak_id=a.id WHERE
-                       r.id='.$id_ramodif->id_ramodif.' AND a.id='.$idAnak.' GROUP BY dr.waktu,pr.tahap ORDER BY dr.waktu DESC) AS DATA GROUP BY waktu
+                       r.id='.$id_ramodif->id_ramodif.' AND a.id='.$idAnak.' GROUP BY dr.waktu,pr.tahap,a.nama,r.nama ORDER BY dr.waktu DESC) AS DATA GROUP BY waktu,nama,namaramodif
 
     ');
           //  dd($hasilramodif);

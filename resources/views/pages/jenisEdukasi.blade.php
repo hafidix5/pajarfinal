@@ -28,6 +28,9 @@
                       <th>
                         Singkatan
                       </th>
+                      <th>
+                        Link Grup WA
+                      </th>
                     <th>
                         Aksi
                     </th>
@@ -37,6 +40,10 @@
                         <tr>
                             <td>{{ $jenisEdukasi->nama }}</td>
                             <td>{{ $jenisEdukasi->singkatan }}</td>
+                            <td>
+                                <a href="{{$jenisEdukasi->link_wa }}" target="_blank">{{$jenisEdukasi->link_wa }}</a>
+
+                            </td>
                             <th>
                                 <a class="nav-link" href="{{ route('jenisEdukasi.edit',$jenisEdukasi->id) }}">
                                     <i class="material-icons">edit</i> Edit

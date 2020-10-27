@@ -141,7 +141,7 @@ WHERE je.id='.$idJenisEdukasi.'
         when SUM(di.jawaban)<='.$tinggi.' then "Pengetahuan Tinggi" END)
         AS skor FROM detail_insting AS di left JOIN pertanyaan_insting AS pei ON
         di.pertanyaan_insting_id=pei.id JOIN insting AS i ON pei.insting_id=i.id JOIN anak AS a ON
-        di.anak_id=a.id WHERE i.id='.$id_insting->id_insting.' AND a.id='.$idAnak.' GROUP BY di.waktu Order by di.waktu desc
+        di.anak_id=a.id WHERE i.id='.$id_insting->id_insting.' AND a.id='.$idAnak.' GROUP BY di.waktu,a.nama,i.nama Order by di.waktu desc
 
     ');
           //  dd($hasilInsting);
@@ -216,8 +216,8 @@ WHERE je.id='.$idJenisEdukasi.'
         $hasilRamodif=DB::select('
         SELECT di.waktu AS waktu,a.nama AS namaAnak,pei.pertanyaan AS pertanyaan, di.jawaban AS jawaban,
         pei.tahap as tahap
- FROM anak AS a JOIN detail_Ramodif AS di ON a.id=di.anak_id JOIN pertanyaan_Ramodif AS pei
-ON di.pertanyaan_Ramodif_id=pei.id JOIN Ramodif AS i ON pei.Ramodif_id=i.id
+ FROM anak AS a JOIN detail_ramodif AS di ON a.id=di.anak_id JOIN pertanyaan_ramodif AS pei
+ON di.pertanyaan_ramodif_id=pei.id JOIN ramodif AS i ON pei.ramodif_id=i.id
 WHERE a.id='.$idAnak.' AND i.jenis_edukasi_id='.$idJenisEdukasi.' ORDER BY di.waktu DESC, pei.id asc
     ');
           //  dd($hasilRamodif);

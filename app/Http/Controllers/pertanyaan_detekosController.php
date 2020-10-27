@@ -44,11 +44,12 @@ class pertanyaan_detekosController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
+            'id' => 'required',
     		'pertanyaan' => 'required',
             'detekos_id' => 'required'
         ]);
 
-        $no_deteks=pertanyaan_detekos::where('detekos_id', $request->detekos_id)->count();
+        /* $no_deteks=pertanyaan_detekos::where('detekos_id', $request->detekos_id)->count();
         if($no_deteks==null)
         {
             $no_deteks=1;
@@ -56,11 +57,11 @@ class pertanyaan_detekosController extends Controller
         else
         {
             $no_deteks++;
-        }
+        } */
 
 
         pertanyaan_detekos::create([
-            'id'=>$no_deteks,
+            'id'=>$request->id,
             'pertanyaan' => $request->pertanyaan,
             'detekos_id' => $request->detekos_id
         ]);

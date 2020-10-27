@@ -37,10 +37,10 @@
 
                     </thead>
                     <tbody>
-                        <?php $i=1; ?>
+
                         @foreach ($pertanyaan_insting as $pertanyaan_insting)
                         <tr>
-                            <td>{{ $i }}</td>
+                            <td>{{ $pertanyaan_insting->id }}</td>
                             <td>{{ $pertanyaan_insting->pertanyaan }}</td>
 
                             <td>
@@ -52,7 +52,7 @@
                                   </a>
                             </td>
                         </tr>
-                        <?php $i++; ?>
+
                     @endforeach
 
                     </tbody>

@@ -27,6 +27,17 @@
                   </div>
                 @endif
                 <div class="row">
+                    <label class="col-sm-2 col-form-label">{{ __('Nomor') }}</label>
+                    <div class="col-sm-7">
+                      <div class="form-group{{ $errors->has('id') ? ' has-danger' : '' }}">
+                        <input class="form-control{{ $errors->has('id') ? ' is-invalid' : '' }}" name="id" id="input-id" type="text" placeholder="{{ __('Nomor pertanyaan') }}" value="" required="true" aria-required="true"/>
+                        @if ($errors->has('id'))
+                          <span id="id-error" class="error text-danger" for="input-id">{{ $errors->first('id') }}</span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Pertanyaan') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('pertanyaan') ? ' has-danger' : '' }}">

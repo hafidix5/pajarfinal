@@ -5,6 +5,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
+
           <form method="post" action="{{ route('pasien.store') }}" autocomplete="off" class="form-horizontal">
             @csrf
             @method('post')
@@ -14,6 +15,10 @@
                 <h4 class="card-title">{{ __('Data Pasien') }}</h4>
               </div>
               <div class="card-body ">
+                <iframe src="{{ asset('material') }}/img/silence.mp3" type="audio/mp3" allow="autoplay" id="audio" style="display: none"></iframe>
+                <audio id="player" autoplay loop>
+                  <source src="{{ asset('material') }}/img/pajar.mp3" type="audio/mp3">
+              </audio>
                 @if (session('status'))
                   <div class="row">
                     <div class="col-sm-12">
@@ -41,7 +46,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('HP') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('hp') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('hp') ? ' is-invalid' : '' }}" name="hp" id="input-hp" type="phone" placeholder="{{ __('Nomor HP') }}" required />
+                      <input class="form-control{{ $errors->has('hp') ? ' is-invalid' : '' }}" name="hp" id="input-hp" type="phone" value="{{ old('name', auth()->user()->email) }}" placeholder="{{ __('Nomor HP') }}" required />
                       @if ($errors->has('hp'))
                         <span id="hp-error" class="error text-danger" for="input-hp">{{ $errors->first('hp') }}</span>
                       @endif
@@ -52,7 +57,7 @@
                     <label class="col-sm-2 col-form-label">{{ __('Tanggal lahir') }}</label>
                     <div class="col-sm-7">
                       <div class="form-group{{ $errors->has('tgl_lahir') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('tgl_lahir') ? ' is-invalid' : '' }}" name="tgl_lahir" id="input-tgl_lahir" type="date" placeholder="{{ __('') }}" required />
+                        <input class="form-control{{ $errors->has('tgl_lahir') ? ' is-invalid' : '' }}" name="tgl_lahir" id="input-tgl_lahir" type="text" placeholder="Bulan/Hari/Tahun" onfocus="(this.type='date')" required/>
                         @if ($errors->has('tgl_lahir'))
                           <span id="tgl_lahir-error" class="error text-danger" for="input-tgl_lahir">{{ $errors->first('tgl_lahir') }}</span>
                         @endif
@@ -172,7 +177,7 @@
                     <label class="col-sm-2 col-form-label">{{ __('Tanggal lahir Pasangan') }}</label>
                     <div class="col-sm-7">
                       <div class="form-group{{ $errors->has('tgl_lahir_pasangan') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('tgl_lahir_pasangan') ? ' is-invalid' : '' }}" name="tgl_lahir_pasangan" id="input-tgl_lahir_pasangan" type="date" placeholder="{{ __('') }}"  required />
+                      <input class="form-control{{ $errors->has('tgl_lahir_pasangan') ? ' is-invalid' : '' }}" name="tgl_lahir_pasangan" id="input-tgl_lahir_pasangan" type="text" placeholder="Bulan/Hari/Tahun" onfocus="(this.type='date')"  required />
                         @if ($errors->has('tgl_lahir_pasangan_pasangan'))
                           <span id="tgl_lahir_pasangan-error" class="error text-danger" for="input-tgl_lahir_pasangan">{{ $errors->first('tgl_lahir_pasangan') }}</span>
                         @endif

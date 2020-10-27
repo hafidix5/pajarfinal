@@ -1,4 +1,5 @@
 <!-- Navbar -->
+
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
   <div class="container">
     <div class="navbar-wrapper">
@@ -12,16 +13,22 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
-        <li class="nav-item{{ $activePage ?? '' }}">
-          <a href="{{ route('register') }}" class="nav-link">
-            <i class="material-icons">person_add</i> {{ __('Daftar') }}
-          </a>
-        </li>
-        <li class="nav-item{{ $activePage ?? '' }}">
-          <a href="{{ route('login') }}" class="nav-link">
-            <i class="material-icons">fingerprint</i> {{ __('Login') }}
-          </a>
-        </li>
+        <div class="card-header card-header-primary text-center">
+            <li class="nav-item{{ $activePage ?? '' }}">
+                <a href="{{ route('register') }}" class="nav-link">
+                  <i class="material-icons">person_add</i> {{ __('Daftar') }}
+                </a>
+              </li>
+              <li class="nav-item{{ $activePage ?? '' }}">
+                {{-- <a href="{{ route('login') }}" class="nav-link">
+                    <i class="material-icons">fingerprint</i> {{ __('Masuk') }}
+                </a> --}}
+                <a href="{{ asset('material') }}/img/panduan_pajar.html" target="_blank" class="text-light">
+                    <button >   <h4>{{ __('Lihat Panduan') }}</h4> </button>
+                </a>
+              </li>
+          </div>
+
       </ul>
     </div>
   </div>

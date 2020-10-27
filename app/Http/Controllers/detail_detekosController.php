@@ -133,19 +133,19 @@ WHERE je.id='.$idJenisEdukasi.'
         ');
         $jumlahpertanyaan=pertanyaan_detekos::where('detekos_id', $id_detekos->id_detekos)->count();
 
-        $rendah=0.33*$jumlahpertanyaan;
-        $normal=0.67*$jumlahpertanyaan;
+        $rendah=0.5*$jumlahpertanyaan;
+        $normal=0*$jumlahpertanyaan;
         $tinggi=1*$jumlahpertanyaan;
 
         $hasildetekos=DB::select('
         SELECT a.nama AS nama,di.waktu AS waktu,i.nama as detekos,
-         (case when SUM(di.jawaban)<='.$rendah.' then "Resiko Rendah"
-                                    when SUM(di.jawaban)<='.$normal.' then "Normal"
+         (case when SUM(di.jawaban)<='.$normal.' then "Normal"
+                                    when SUM(di.jawaban)<='.$rendah.' then "Resiko Rendah"
                                     when SUM(di.jawaban)<='.$tinggi.' then "Resiko Tinggi"
                             END)
         AS skor FROM detail_detekos AS di left JOIN pertanyaan_detekos AS pei ON
         di.pertanyaan_detekos_id=pei.id JOIN detekos AS i ON pei.detekos_id=i.id JOIN anak AS a ON
-        di.anak_id=a.id WHERE i.id='.$id_detekos->id_detekos.' AND a.id='.$idAnak.' GROUP BY di.waktu Order by di.waktu desc
+        di.anak_id=a.id WHERE i.id='.$id_detekos->id_detekos.' AND a.id='.$idAnak.' GROUP BY di.waktu,a.nama,i.nama Order by di.waktu desc
 
     ');
           //  dd($hasildetekos);

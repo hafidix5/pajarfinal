@@ -8,7 +8,7 @@ class jenisEdukasi extends Model
 {
     protected $table='jenis_edukasi';
     protected $fillable = [
-        'nama','singkatan'
+        'nama','singkatan','link_wa'
     ];
     public function insting(){
         return $this->hasMany('App\insting');

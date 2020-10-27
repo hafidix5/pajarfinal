@@ -49,6 +49,17 @@
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                    <label class="col-sm-2 col-form-label">{{ __('Link Group WA') }}</label>
+                    <div class="col-sm-7">
+                      <div class="form-group{{ $errors->has('link_wa') ? ' has-danger' : '' }}">
+                        <input class="form-control{{ $errors->has('link_wa') ? ' is-invalid' : '' }}" name="link_wa" id="input-link_wa" type="text" placeholder="{{ __('link_wa') }}" value="{{$jenisEdukasi->link_wa}}"  required="true" aria-required="true"/>
+                        @if ($errors->has('link_wa'))
+                          <span id="link_wa-error" class="error text-danger" for="input-link_wa">{{ $errors->first('link_wa') }}</span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
 
 
               </div>

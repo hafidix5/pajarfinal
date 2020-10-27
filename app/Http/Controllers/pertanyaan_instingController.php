@@ -44,10 +44,11 @@ class pertanyaan_instingController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
+            'id' => 'required',
     		'pertanyaan' => 'required',
             'insting_id' => 'required'
         ]);
-        $no_insting=pertanyaan_insting::where('insting_id', $request->insting_id)->count();
+       /*  $no_insting=pertanyaan_insting::where('insting_id', $request->insting_id)->count();
         if($no_insting==null)
         {
             $no_insting=1;
@@ -55,11 +56,11 @@ class pertanyaan_instingController extends Controller
         else
         {
             $no_insting++;
-        }
+        } */
 
 
         pertanyaan_insting::create([
-            'id'=>$no_insting,
+            'id'=>$request->id,
             'pertanyaan' => $request->pertanyaan,
             'insting_id' => $request->insting_id
         ]);
@@ -84,7 +85,8 @@ class pertanyaan_instingController extends Controller
         $pertanyaan_insting=pertanyaan_insting::where('pertanyaan_insting.insting_id', $id)
         ->Join('insting','pertanyaan_insting.insting_id','=','insting.id')
         ->select('pertanyaan_insting.pertanyaan as pertanyaan','insting.nama as nama',
-        'pertanyaan_insting.id as id')->get();
+        'pertanyaan_insting.id as id')
+        ->OrderBy('pertanyaan_insting.id','ASC')->get();
         $insting=insting::where('id','=',$id)->select('insting.nama as nama','insting.id as id')->first();
         return view('pages.pertanyaan_instingIndex',['pertanyaan_insting'=>$pertanyaan_insting,
         'insting'=>$insting]);

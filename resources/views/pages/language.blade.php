@@ -638,7 +638,7 @@
             </div>
           </div>
         </div>
-        <footer class="footer">
+       {{--  <footer class="footer">
           <div class="container-fluid">
 
             <div class="copyright float-right">
@@ -650,7 +650,7 @@
               <a href="https://www.creative-tim.com" target="_blank">تیم خلاق</a> برای وب بهتر.
             </div>
           </div>
-        </footer>
+        </footer> --}}
       </div>
     </div>
     <!--   Core JS Files   -->

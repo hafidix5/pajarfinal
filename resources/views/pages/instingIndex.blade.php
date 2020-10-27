@@ -39,6 +39,7 @@
                         @foreach ($insting as $insting)
                         <tr>
                             <td>{{ $insting->nama }}</td>
+
                             <td>{{ $insting->video }}</td>
                             <td>{{ $insting->jenis_edukasi }}</td>
                             <th>

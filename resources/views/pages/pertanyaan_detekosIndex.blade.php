@@ -37,10 +37,10 @@
 
                     </thead>
                     <tbody>
-                        <?php $i=1; ?>
+
                         @foreach ($pertanyaan_detekos as $pertanyaan_detekos)
                         <tr>
-                            <td>{{ $i }}</td>
+                            <td>{{ $pertanyaan_detekos->id }}</td>
                             <td>{{ $pertanyaan_detekos->pertanyaan }}</td>
 
                             <td>
@@ -52,7 +52,7 @@
                                   </a>
                             </td>
                         </tr>
-                        <?php $i++; ?>
+
                     @endforeach
 
                     </tbody>

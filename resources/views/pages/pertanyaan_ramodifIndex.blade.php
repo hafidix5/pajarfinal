@@ -40,10 +40,10 @@
 
                     </thead>
                     <tbody>
-                        <?php $i=1; ?>
+
                         @foreach ($pertanyaan_ramodif as $pertanyaan_ramodif)
                         <tr>
-                            <td>{{ $i }}</td>
+                            <td>{{ $pertanyaan_ramodif->id }}</td>
                             <td>{{ $pertanyaan_ramodif->pertanyaan }}</td>
                             <td>{{ $pertanyaan_ramodif->tahap }}</td>
                             <td>
@@ -55,7 +55,7 @@
                                   </a>
                             </td>
                         </tr>
-                        <?php $i++; ?>
+
                     @endforeach
 
                     </tbody>

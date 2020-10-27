@@ -41,7 +41,7 @@
                     <label class="col-sm-2 col-form-label">{{ __('Tanggal lahir') }}</label>
                     <div class="col-sm-7">
                       <div class="form-group{{ $errors->has('tgl_lahir') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('tgl_lahir') ? ' is-invalid' : '' }}" name="tgl_lahir" id="input-tgl_lahir" type="date" placeholder="{{ __('') }}" value="" required />
+                        <input class="form-control{{ $errors->has('tgl_lahir') ? ' is-invalid' : '' }}" name="tgl_lahir" id="input-tgl_lahir" type="text" placeholder="Bulan/Hari/Tahun" onfocus="(this.type='date')" required />
                         @if ($errors->has('tgl_lahir'))
                           <span id="tgl_lahir-error" class="error text-danger" for="input-tgl_lahir">{{ $errors->first('tgl_lahir') }}</span>
                         @endif

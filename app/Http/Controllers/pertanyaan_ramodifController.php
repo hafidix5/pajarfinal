@@ -45,12 +45,13 @@ class pertanyaan_ramodifController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
+            'id' => 'required',
     		'pertanyaan' => 'required',
             'ramodif_id' => 'required',
             'tahap'=>'required'
     	]);
 
-        $no_ramodif=pertanyaan_ramodif::where('ramodif_id', $request->ramodif_id)->count();
+       /*  $no_ramodif=pertanyaan_ramodif::where('ramodif_id', $request->ramodif_id)->count();
         if($no_ramodif==null)
         {
             $no_ramodif=1;
@@ -58,9 +59,9 @@ class pertanyaan_ramodifController extends Controller
         else
         {
             $no_ramodif++;
-        }
+        } */
         pertanyaan_ramodif::create([
-            'id'=>$no_ramodif,
+            'id'=>$request->id,
             'pertanyaan' => $request->pertanyaan,
             'ramodif_id' => $request->ramodif_id,
             'tahap'=>$request->tahap
