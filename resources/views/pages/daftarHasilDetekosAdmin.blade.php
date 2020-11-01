@@ -38,8 +38,16 @@
                     <tbody>
                         @foreach ($daftarhasil as $daftarhasil)
                         <tr>
-                            <td>{{ $daftarhasil->namaAnak }}</td>
-                            <td>{{ $daftarhasil->namaOrtu }}</td>
+                            <td>
+                                <a class="nav-link" href="{{ route('dataanakpasien',$daftarhasil->idAnak) }}">
+                                    {{ $daftarhasil->namaAnak }}
+                                  </a>
+                            </td>
+                            <td>
+                                <a class="nav-link" href="{{ route('datapasien',$daftarhasil->idPasien) }}">
+                                    {{ $daftarhasil->namaOrtu }}
+                                  </a>
+                                </td>
                             <td>{{ $daftarhasil->namaPuskesmas }}</td>
                             <th>
                                 <a class="nav-link" href="{{ route('hasil_kuesioner_detekosAdmin',[$daftarhasil->id,$id_jenisEdukasi]) }}">

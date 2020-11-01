@@ -56,7 +56,7 @@ class detail_detekosController extends Controller
         $no=$nomor->id;
         $data=$request->except(['_token', '_method']);
        // dd($data);
-        $cek = detail_detekos::where('waktu',$date)->first();
+        $cek = detail_detekos::where('waktu',$date)->where('anak_id',$idAnak)->first();
         if($cek)
         {
             return back()->withStatus(__('Kuesioner hanya bisa diisi Satu kali per hari'));

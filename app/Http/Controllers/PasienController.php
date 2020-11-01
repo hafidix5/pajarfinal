@@ -116,7 +116,10 @@ class PasienController extends Controller
      */
     public function show($id)
     {
-        //
+        $puskesmas=puskesmas::all();
+        $pasien=DB::table('pasien')->where('id',$id)->first();
+      //  dd($pasien);
+        return view('pages.dataDiriPasien', ['puskesmas'=>$puskesmas,'pasien'=>$pasien]);
     }
 
     /**

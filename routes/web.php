@@ -149,6 +149,9 @@ Route::get('riwayatdetail/{tanggal}/DetailKuesioner/{id}', 'jawaban_kuesionerCon
     Route::get('hasil_kuesioner_detekosAdminExport/{idAnak}/{idJenisEdukasi})', 'detail_detekosController@showHasilDetekosAdminExport')->name('detekosAdminExport');
     Route::get('hasil_kuesioner_ramodifAdminExport/{idAnak}/{idJenisEdukasi})', 'detail_ramodifController@showHasilRamodifAdminExport')->name('ramodifAdminExport');
 
+    Route::get('datapasien/{idPasien})', 'PasienController@show')->name('datapasien');
+    Route::get('dataanakpasien/{idAnak})', 'AnakController@showanak')->name('dataanakpasien');
+
     Route::get('pilihGroup', 'jenisEdukasiController@showGroup')->name('pilihGroup');
 
     Route::get('icons', function () {

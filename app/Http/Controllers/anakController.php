@@ -151,11 +151,11 @@ class anakController extends Controller
     {
         $id_user=auth()->user()->id;
         $daftarhasil=DB::select('
-        SELECT a.nama AS namaAnak,pa.nama AS namaOrtu, p.nama AS namaPuskesmas,a.id AS id
+        SELECT a.nama AS namaAnak, a.id as idAnak,pa.id as idPasien,pa.nama AS namaOrtu, p.nama AS namaPuskesmas,a.id AS id
  FROM puskesmas AS p JOIN pasien AS pa ON p.id=pa.puskesmas_id JOIN anak AS a ON pa.id=a.pasien_id
 JOIN detail_insting AS di ON a.id=di.anak_id JOIN pertanyaan_insting AS pei ON di.pertanyaan_insting_id=
 pei.id JOIN insting AS i ON pei.insting_id=i.id WHERE i.jenis_edukasi_id='.$id.'
- group by a.nama,pa.nama,p.nama,a.id ORDER BY
+ group by a.id,pa.id,a.nama,pa.nama,p.nama,a.id ORDER BY
 a.nama asc
 
     ');
@@ -170,11 +170,11 @@ a.nama asc
     {
         $id_user=auth()->user()->id;
         $daftarhasil=DB::select('
-        SELECT a.nama AS namaAnak,pa.nama AS namaOrtu, p.nama AS namaPuskesmas,a.id AS id
+        SELECT a.nama AS namaAnak, a.id as idAnak,pa.id as idPasien,pa.nama AS namaOrtu, p.nama AS namaPuskesmas,a.id AS id
  FROM puskesmas AS p JOIN pasien AS pa ON p.id=pa.puskesmas_id JOIN anak AS a ON pa.id=a.pasien_id
 JOIN detail_detekos AS di ON a.id=di.anak_id JOIN pertanyaan_detekos AS pei ON di.pertanyaan_detekos_id=
 pei.id JOIN detekos AS i ON pei.detekos_id=i.id WHERE i.jenis_edukasi_id='.$id.'
- group by a.nama,pa.nama,p.nama,a.id ORDER BY
+ group by a.id,pa.id,a.nama,pa.nama,p.nama,a.id ORDER BY
 a.nama asc
 
     ');
@@ -188,11 +188,11 @@ a.nama asc
     {
         $id_user=auth()->user()->id;
         $daftarhasil=DB::select('
-        SELECT a.nama AS namaAnak,pa.nama AS namaOrtu, p.nama AS namaPuskesmas,a.id AS id
+        SELECT a.nama AS namaAnak, a.id as idAnak,pa.id as idPasien,pa.nama AS namaOrtu, p.nama AS namaPuskesmas,a.id AS id
  FROM puskesmas AS p JOIN pasien AS pa ON p.id=pa.puskesmas_id JOIN anak AS a ON pa.id=a.pasien_id
 JOIN detail_ramodif AS di ON a.id=di.anak_id JOIN pertanyaan_ramodif AS pei ON di.pertanyaan_ramodif_id=
 pei.id JOIN ramodif AS i ON pei.ramodif_id=i.id WHERE i.jenis_edukasi_id='.$id.'
- group by a.nama,pa.nama,p.nama,a.id ORDER BY
+ group by a.id,pa.id,a.nama,pa.nama,p.nama,a.id ORDER BY
 a.nama asc
 
     ');
@@ -214,6 +214,13 @@ a.nama asc
         $anak=DB::table('anak')->where('id',$id)->first();
         //dd($anak);
         return view('pages.dataAnak-edit',['anak'=>$anak]);
+
+    }
+    public function showanak($id)
+    {
+        $anak=DB::table('anak')->where('id',$id)->first();
+        //dd($anak);
+        return view('pages.dataAnakpasien',['anak'=>$anak]);
 
     }
 

@@ -55,7 +55,7 @@ class detail_ramodifController extends Controller
         $no=$nomor->id;
         $data=$request->except(['_token', '_method']);
        // dd($data);
-        $cek = detail_ramodif::where('waktu',$date)->first();
+        $cek = detail_ramodif::where('waktu',$date)->where('anak_id',$idAnak)->first();
         if($cek)
         {
             return back()->withStatus(__('Kuesioner hanya bisa diisi Satu kali per hari'));
